@@ -5,6 +5,8 @@
  * can be used within code based generative art.
  */
 
+(function() {
+
 let searchParams = new URLSearchParams(window.location.search)
 
 const generateRandomHash = () => {
@@ -39,6 +41,7 @@ function sfc32New(a, b, c, d) {
 const seed = xmur3(searchParams.get("h") || generateRandomHash());
 
 const hl = {
+    _version: "0.0.2",
     tx: {
         hash: searchParams.get("h") || generateRandomHash(),
         blockHash: searchParams.get("bh"),
@@ -69,3 +72,22 @@ const hl = {
 };
 
 window.$hl = hl;
+
+
+window.addEventListener("message", (event) => {
+if (event.data === "$hl_getInfo") {
+  parent.postMessage({
+    id: "$hl_getInfo",
+    data: { 
+      version: hl._version,
+      tx: hl.tx,
+      token: {
+        id: hl.token.id,
+        attributes: hl.token.getAttributes(),
+      }
+    },
+  }, "*")
+}
+});
+
+})()
