@@ -18,7 +18,7 @@ const generateRandomHash = () => {
   );
 };
 
-const generateRandomWalletAddress = () => {
+const generateRandomAddress = () => {
   const alphabet = "0123456789abcdef";
   return (
     "0x" +
@@ -56,15 +56,24 @@ function sfc32New(a, b, c, d) {
   };
 }
 
-const seed = xmur3(searchParams.get("h") || generateRandomHash());
+const address = searchParams.get("a") || generateRandomAddress();
+const chainId = searchParams.get("c") || [1,5,137,80001][Math.floor(Math.random()*4)];
+const hash = searchParams.get("h") || generateRandomHash();
+const blockHash = searchParams.get("bh") || generateRandomHash();
+const tokenId = searchParams.get("tid") || Math.floor(100 * Math.random()).toString();
+const walletAddress = searchParams.get("wa") || generateRandomAddress();
+const timestamp = searchParams.get("t") || Date.now();
+const seed = xmur3(hash + tokenId);
 
 const hl = {
   tx: {
-    hash: searchParams.get("h") || generateRandomHash(),
-    blockHash: searchParams.get("bh") || generateRandomHash(),
-    timestamp: searchParams.get("t"),
-    walletAddress: searchParams.get("wa") || generateRandomWalletAddress(),
-    tokenId: searchParams.get("tid"),
+    address,
+    chainId,
+    hash,
+    blockHash,
+    timestamp,
+    walletAddress,
+    tokenId,
   },
   random: sfc32New(seed(), seed(), seed(), seed()),
   randomNum: (min, max) => {
