@@ -5,7 +5,7 @@
  * can be used within code based generative art.
  */
 
-(function () {
+const hl = (function () {
     let searchParams = new URLSearchParams(window.location.search);
 
     const generateRandomHash = () => {
@@ -110,5 +110,7 @@
         },
     };
 
-    window.$hl = hl;
+    return hl;
 })();
+
+window.$hl = hl;
