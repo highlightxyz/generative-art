@@ -56,24 +56,26 @@ function sfc32New(a, b, c, d) {
   };
 }
 
-const address = searchParams.get("a") || generateRandomAddress();
-const chainId = searchParams.get("c") || [1,5,137,80001][Math.floor(Math.random()*4)];
+const contractAddress = searchParams.get("a") || generateRandomAddress();
+const chainId = searchParams.get("c") || [1,5,137,80001][Math.floor(Math.random()*4)].toString();
+const editionSize = searchParams.get("s") || Math.floor(100 * Math.random()).toString();
 const hash = searchParams.get("h") || generateRandomHash();
 const blockHash = searchParams.get("bh") || generateRandomHash();
 const tokenId = searchParams.get("tid") || Math.floor(100 * Math.random()).toString();
 const walletAddress = searchParams.get("wa") || generateRandomAddress();
-const timestamp = searchParams.get("t") || Date.now();
+const timestamp = searchParams.get("t") || Date.now().toString();
 const seed = xmur3(hash + tokenId);
 
 const hl = {
   tx: {
-    address,
+    contractAddress,
     chainId,
     hash,
     blockHash,
     timestamp,
     walletAddress,
     tokenId,
+    editionSize
   },
   random: sfc32New(seed(), seed(), seed(), seed()),
   randomNum: (min, max) => {
