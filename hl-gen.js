@@ -65,7 +65,8 @@ const hl = (function () {
     const tokenId = searchParams.get("tid") || Math.floor(100 * Math.random()).toString();
     const walletAddress = searchParams.get("wa") || generateRandomAddress();
     const timestamp = searchParams.get("t") || Date.now().toString();
-    const seed = xmur3(hash + tokenId);
+    const isCurated = searchParams.get("ic") || "0";
+    const seed = isCurated === "1"? xmur3(hash) : xmur3(hash + tokenId);
 
     const hl = {
         tx: {
