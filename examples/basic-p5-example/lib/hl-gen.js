@@ -1,6 +1,6 @@
 /**
- * Highlight Generative Art Script : V1
- * @version: v1
+ * Highlight Generative Art Script : V0
+ * @version: v0.1
  * @description The script exposes certain values and methods that
  * can be used within code based generative art.
  */
@@ -62,10 +62,12 @@ const hl = (function () {
     const editionSize = searchParams.get("s") || Math.floor(100 * Math.random()).toString();
     const hash = searchParams.get("h") || generateRandomHash();
     const blockHash = searchParams.get("bh") || generateRandomHash();
+    const blockNumber = searchParams.get("bn") || Math.floor(1000000 * Math.random()).toString();
     const tokenId = searchParams.get("tid") || Math.floor(100 * Math.random()).toString();
     const walletAddress = searchParams.get("wa") || generateRandomAddress();
     const timestamp = searchParams.get("t") || Date.now().toString();
-    const seed = xmur3(hash + tokenId);
+    const isCurated = searchParams.get("ic") || "0";
+    const seed = isCurated === "1"? xmur3(hash) : xmur3(hash + tokenId);
 
     const hl = {
         tx: {
@@ -78,12 +80,18 @@ const hl = (function () {
             tokenId,
             editionSize
         },
-        random: sfc32New(seed(), seed(), seed(), seed()),
-        randomNum: (min, max) => {
-            return min + (max - min) * hl.random();
+        random: (...args) => {
+            let min = 0, max = 1;
+            if(args.length === 1) max = args[0]
+            if(args.length === 2) { max = args[1]; min = args[0];}
+            const rand = sfc32New(seed(), seed(), seed(), seed())();
+            return min + (max - min) * rand;
         },
-        randomInt: (min, max) => {
-            return Math.floor(hl.randomNum(min, max + 1));
+        randomInt: (...args) => {
+            if(args.length === 0) args.push(100) //If not upper limit provided then set to [0,100) as safe assumption
+            if(args.length === 1) args[0]++;
+            if(args.length === 2) args[1]++;
+            return Math.floor(hl.random(...args));
         },
         randomBool: (p) => {
             return hl.random() < p;
@@ -94,6 +102,8 @@ const hl = (function () {
         token: {
             id: searchParams.get("tid"),
             attributes: {},
+            name: "",
+            description: "",
             capturePreview: function () {
                 window.dispatchEvent(new Event("CAPTURE_PREVIEW"));
                 setTimeout(() => this.capturePreview(), 500);
@@ -104,9 +114,28 @@ const hl = (function () {
             getAttributes: function () {
                 return this.attributes;
             },
+            setName: function (name) {
+                this.name = name;
+            },
+            getName: function () {
+                return this.name;
+            },
+            setDescription: function (description) {
+                this.description = description;
+            },
+            getDescription: function () {
+                return this.description;
+            },
         },
         context: {
             previewMode: searchParams.get("pr") === "1",
+            scriptInfo: () => {
+                return {
+                    name: "Highlight Generative Art Script",
+                    version: "v0.1",
+                    framework: "js"
+                }
+            }
         },
     };
 
