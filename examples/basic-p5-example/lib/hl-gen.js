@@ -65,7 +65,8 @@ const hl = (function () {
     const tokenId = searchParams.get("tid") || Math.floor(100 * Math.random()).toString();
     const walletAddress = searchParams.get("wa") || generateRandomAddress();
     const timestamp = searchParams.get("t") || Date.now().toString();
-    const seed = xmur3(hash + tokenId);
+    const isCurated = searchParams.get("ic") || "0";
+    const seed = isCurated === "1"? xmur3(hash) : xmur3(hash + tokenId);
 
     const hl = {
         tx: {
@@ -78,12 +79,18 @@ const hl = (function () {
             tokenId,
             editionSize
         },
-        random: sfc32New(seed(), seed(), seed(), seed()),
-        randomNum: (min, max) => {
-            return min + (max - min) * hl.random();
+        random: (...args) => {
+            let min = 0, max = 1;
+            if(args.length === 1) max = args[0]
+            if(args.length === 2) { max = args[1]; min = args[0];}
+            const rand = sfc32New(seed(), seed(), seed(), seed())();
+            return min + (max - min) * rand;
         },
-        randomInt: (min, max) => {
-            return Math.floor(hl.randomNum(min, max + 1));
+        randomInt: (...args) => {
+            if(args.length === 0) args.push(100) //If not upper limit provided then set to [0,100) as safe assumption
+            if(args.length === 1) args[0]++;
+            if(args.length === 2) args[1]++;
+            return Math.floor(hl.random(...args));
         },
         randomBool: (p) => {
             return hl.random() < p;
