@@ -1,6 +1,6 @@
 /**
- * Highlight Generative Art Script : V1
- * @version: v1
+ * Highlight Generative Art Script : V0
+ * @version: v0.1
  * @description The script exposes certain values and methods that
  * can be used within code based generative art.
  */
@@ -62,6 +62,7 @@ const hl = (function () {
     const editionSize = searchParams.get("s") || Math.floor(100 * Math.random()).toString();
     const hash = searchParams.get("h") || generateRandomHash();
     const blockHash = searchParams.get("bh") || generateRandomHash();
+    const blockNumber = searchParams.get("bn") || Math.floor(1000000 * Math.random()).toString();
     const tokenId = searchParams.get("tid") || Math.floor(100 * Math.random()).toString();
     const walletAddress = searchParams.get("wa") || generateRandomAddress();
     const timestamp = searchParams.get("t") || Date.now().toString();
@@ -101,6 +102,8 @@ const hl = (function () {
         token: {
             id: searchParams.get("tid"),
             attributes: {},
+            name: "",
+            description: "",
             capturePreview: function () {
                 window.dispatchEvent(new Event("CAPTURE_PREVIEW"));
                 setTimeout(() => this.capturePreview(), 500);
@@ -111,9 +114,28 @@ const hl = (function () {
             getAttributes: function () {
                 return this.attributes;
             },
+            setName: function (name) {
+                this.name = name;
+            },
+            getName: function () {
+                return this.name;
+            },
+            setDescription: function (description) {
+                this.description = description;
+            },
+            getDescription: function () {
+                return this.description;
+            },
         },
         context: {
             previewMode: searchParams.get("pr") === "1",
+            scriptInfo: () => {
+                return {
+                    name: "Highlight Generative Art Script",
+                    version: "v0.1",
+                    framework: "js"
+                }
+            }
         },
     };
 
