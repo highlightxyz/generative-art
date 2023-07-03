@@ -24,10 +24,10 @@ function setup() {
 
   // Choose colors
   backgroundColor = hl.randomElement(["#ffffff", "#000000"]);
-  color1 = color(hl.randomNum(0, 360), 20, 100);
-  color2 = color(hl.randomNum(0, 360), 20, 100);
-  color3 = color(hl.randomNum(0, 360), 20, 100);
-  color4 = color(hl.randomNum(0, 360), 20, 100);
+  color1 = color(hl.random(0, 360), 20, 100);
+  color2 = color(hl.random(0, 360), 20, 100);
+  color3 = color(hl.random(0, 360), 20, 100);
+  color4 = color(hl.random(0, 360), 20, 100);
   chosenColors = [color1, color2, color3, color4];
 
   // Set attributes
