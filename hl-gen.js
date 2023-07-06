@@ -104,7 +104,7 @@ const hl = (function () {
       if (args.length === 2) args[1]++;
       return Math.floor(hl.random(...args));
     },
-    randomBool: (p) => {
+    randomBool: (p = 0.5) => {
       return hl.random() < p;
     },
     randomElement: (array) => {
