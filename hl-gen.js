@@ -82,6 +82,7 @@ const hl = (function () {
       chainId,
       hash,
       blockHash,
+      blockNumber,
       timestamp,
       walletAddress,
       tokenId,
