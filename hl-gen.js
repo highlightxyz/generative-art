@@ -1,6 +1,6 @@
 /**
  * Highlight Generative Art Script : V0
- * @version: v0.1
+ * @version: 0.1.1
  * @description The script exposes certain values and methods that
  * can be used within code based generative art.
  */
@@ -73,6 +73,10 @@ const hl = (function () {
   const walletAddress = searchParams.get("wa") || generateRandomAddress();
   const timestamp =
     searchParams.get("t") || Math.floor(Date.now() / 1000).toString();
+  const gasPrice =
+    searchParams.get("gp") || Math.floor(Math.random() * (200 - 10 + 1) + 10).toString();
+  const gasUsed =
+    searchParams.get("gu") || Math.floor(Math.random() * (100 - 10 + 1) + 10).toString();
   const isCurated = searchParams.get("ic") || "0";
   const seed = isCurated === "1" ? xmur3(hash) : xmur3(hash + tokenId);
 
@@ -87,6 +91,8 @@ const hl = (function () {
       walletAddress,
       tokenId,
       editionSize,
+      gasPrice,
+      gasUsed,
     },
     random: (...args) => {
       let min = 0,
@@ -144,7 +150,7 @@ const hl = (function () {
       scriptInfo: () => {
         return {
           name: "Highlight Generative Art Script",
-          version: "v0.1",
+          version: "0.1.1",
           framework: "js",
         };
       },
