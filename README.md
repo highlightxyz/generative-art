@@ -28,6 +28,8 @@ Every project should include the hl-gen.js script, which gives you access to blo
 Simply reference the hl-gen.js script in your index.html file before your main drawing script:
 
 ```javascript
+// index.html
+
 <head>
   <script src="lib/hl-gen.js"></script>
   <script src="lib/p5.min.js"></script>
@@ -40,6 +42,8 @@ Simply reference the hl-gen.js script in your index.html file before your main d
 The hl-gen.js script provides a number of methods intended to help you generate deterministic randomness in your artwork. These methods are seeded by a combination of the transaction hash (or a predetermined hash if you choose) and the token ID. It is important to use these methods to generate randomness in place of Math.random or p5’s random function to ensure that, after a token is minted, it renders identically on all subsequent renders.
 
 ```javascript
+// hl-gen.js (partial)
+
 hl = {
   // ...
   random: () => Number, // Random number between 0 (inclusive) and 1 (exclusive)
@@ -59,6 +63,8 @@ hl = {
 The hl-gen.js script also gives you direct access to a number of pieces of data from the blockchain, including the transaction hash, block hash, minting wallet address, token ID, edition size, and more.
 
 ```javascript
+// hl-gen.js (partial)
+
 hl = {
   // ...
   tx: {
@@ -83,6 +89,8 @@ hl = {
 Aside from accessing data, hl-gen.js gives you the ability to set metadata for your tokens by calling the provided methods. You can set the name, description, or traits of a token. The setName and setDescription methods take a String as their only argument, while setTraits takes an object with the keys representing the trait names and the values representing the trait values.
 
 ```javascript
+// hl-gen.js (partial)
+
 hl = {
   // ...
   token: {
@@ -100,6 +108,8 @@ hl = {
 For example, setting the name, description, and some traits for a token might look like this:
 
 ```javascript
+// sketch.js
+
 let color = hl.randomElement(["red", "green", "blue"]);
 let size = hl.randomElement(["small", "medium", "large"]);
 hl.token.setName(`${size} ${color} token`);
@@ -120,6 +130,8 @@ In this case, a single token might have the name “small red token” and the d
 Whenever one of your tokens is minted, Highlight automatically captures and assigns a preview image (a raster image used when the token live view can’t be shown) for that token. You can trigger this capture programmatically or by specifying a time delay in the Highlight UI. Triggering the capture programmatically allows you to control exactly when the preview image is captured as your code runs. The hl-gen.js script provides the hl.token.capturePreview() method to trigger the capture.
 
 ```javascript
+// hl-gen.js (partial)
+
 hl = {
   // ...
   token: {
@@ -134,6 +146,8 @@ To capture your preview images programmatically, choose this option in the Previ
 When capturing a preview image, we’ll run your code in the background for a few minutes listening for hl.token.capturePreview() to be called. If you’re using this method, ensure it is called within a few minutes of your script starting. For example, to trigger the capture after the 1000th frame of your script, you could do the following:
 
 ```javascript
+// sketch.js
+
 draw() {
   // Your drawing code...
   if (frameCount === 1000) {
@@ -147,6 +161,8 @@ draw() {
 All of the data inputs and methods discussed above are available on the global hl object, which you can reference in your main drawing script (as long as you’ve included hl-gen.js in your project). This example illustrates a simple p5.js sketch that draws a randomly sized circle in the middle of the canvas, fills it with either red, green, or blue, displays the minting wallet address in the center of the circle, applies the size and color of the circle as traits of the token, and captures a preview image.
 
 ```javascript
+// sketch.js
+
 function setup() {
   createCanvas(800, 800);
   noLoop();
