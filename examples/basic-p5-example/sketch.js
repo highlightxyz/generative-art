@@ -30,8 +30,8 @@ function setup() {
   color4 = color(hl.random(0, 360), 20, 100);
   chosenColors = [color1, color2, color3, color4];
 
-  // Set attributes
-  let attributes = {
+  // Set traits
+  let traits = {
     "Background Color": backgroundColor,
     "Hue 1": hue(color1).toFixed(2),
     "Hue 2": hue(color2).toFixed(2),
@@ -39,7 +39,7 @@ function setup() {
     "Hue 4": hue(color4).toFixed(2),
   };
 
-  hl.token.setAttributes(attributes);
+  hl.token.setTraits(traits);
 }
 
 /*
