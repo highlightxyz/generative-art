@@ -11,11 +11,13 @@ Your .zip should not be larger than 2GB. All project assets are stored on Arweav
 
 **Example project structure**
 
-- index.html
-- sketch.js
-- lib/
-  - p5.min.js
-  - hl-gen.js
+```
+index.html
+sketch.js
+lib/
+↳ p5.min.js
+↳ hl-gen.js
+```
 
 Remember to zip the contents of your project folder, not the folder itself.
 
