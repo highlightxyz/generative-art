@@ -78,7 +78,7 @@ hl = {
     blockNumber: String, // The block number of the transaction to mint a token
     chainId: String, // The id of the blockchain
     gasPrice: String, // The price per unit of gas (in gwei) at the time of mint
-    gasUsed: String, // The amount of gas used (in gwei) in a specific mint transaction
+    gasUsed: String, // The amount of gas used in a specific mint transaction
   },
   // ...
 };
