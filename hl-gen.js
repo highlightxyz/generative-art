@@ -74,9 +74,11 @@ const hl = (function () {
   const timestamp =
     searchParams.get("t") || Math.floor(Date.now() / 1000).toString();
   const gasPrice =
-    searchParams.get("gp") || Math.floor(Math.random() * (200 - 10 + 1) + 10).toString();
+    searchParams.get("gp") ||
+    Math.floor(Math.random() * (200 - 10 + 1) + 10).toString();
   const gasUsed =
-    searchParams.get("gu") || Math.floor(Math.random() * (100 - 10 + 1) + 10).toString();
+    searchParams.get("gu") ||
+    Math.floor(Math.random() * (100 - 10 + 1) + 10).toString();
   const isCurated = searchParams.get("ic") || "0";
   const seed = isCurated === "1" ? xmur3(hash) : xmur3(hash + tokenId);
 
@@ -119,18 +121,18 @@ const hl = (function () {
     },
     token: {
       id: searchParams.get("tid"),
-      attributes: {},
+      traits: {},
       name: "",
       description: "",
       capturePreview: function () {
         window.dispatchEvent(new Event("CAPTURE_PREVIEW"));
         setTimeout(() => this.capturePreview(), 500);
       },
-      setAttributes: function (attributes) {
-        this.attributes = attributes;
+      setTraits: function (traits) {
+        this.traits = traits;
       },
-      getAttributes: function () {
-        return this.attributes;
+      getTraits: function () {
+        return this.traits;
       },
       setName: function (name) {
         this.name = name;

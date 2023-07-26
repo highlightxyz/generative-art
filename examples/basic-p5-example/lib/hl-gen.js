@@ -121,18 +121,18 @@ const hl = (function () {
     },
     token: {
       id: searchParams.get("tid"),
-      attributes: {},
+      traits: {},
       name: "",
       description: "",
       capturePreview: function () {
         window.dispatchEvent(new Event("CAPTURE_PREVIEW"));
         setTimeout(() => this.capturePreview(), 500);
       },
-      setAttributes: function (attributes) {
-        this.attributes = attributes;
+      setTraits: function (traits) {
+        this.traits = traits;
       },
-      getAttributes: function () {
-        return this.attributes;
+      getTraits: function () {
+        return this.traits;
       },
       setName: function (name) {
         this.name = name;
