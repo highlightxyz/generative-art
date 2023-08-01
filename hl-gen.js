@@ -1,6 +1,6 @@
 /**
  * Highlight Generative Art Script : V0
- * @version: 0.1.1
+ * @version: 0.1.2
  * @description The script exposes certain values and methods that
  * can be used within code based generative art.
  */
@@ -62,6 +62,10 @@ const hl = (function () {
   const chainId =
     searchParams.get("c") ||
     [1, 5, 137, 80001][Math.floor(Math.random() * 4)].toString();
+  const mintSize =
+    searchParams.get("ms") || Math.floor(20 * Math.random()).toString();
+  const mintIteration =
+    searchParams.get("s") || Math.floor(Number(mintSize) * Math.random()).toString();
   const editionSize =
     searchParams.get("s") || Math.floor(100 * Math.random()).toString();
   const hash = searchParams.get("h") || generateRandomHash();
@@ -152,7 +156,7 @@ const hl = (function () {
       scriptInfo: () => {
         return {
           name: "Highlight Generative Art Script",
-          version: "0.1.1",
+          version: "0.1.2",
           framework: "js",
         };
       },
