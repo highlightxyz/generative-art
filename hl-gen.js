@@ -63,9 +63,9 @@ const hl = (function () {
     searchParams.get("c") ||
     [1, 5, 137, 80001][Math.floor(Math.random() * 4)].toString();
   const mintSize =
-    searchParams.get("ms") || Math.floor(20 * Math.random()).toString();
+    searchParams.get("ms") || Math.floor((19 * Math.random()) + 1).toString();
   const mintIteration =
-    searchParams.get("s") || Math.floor(Number(mintSize) * Math.random()).toString();
+    searchParams.get("mi") || Math.floor(((Number(mintSize) - 1) * Math.random())+1).toString();
   const editionSize =
     searchParams.get("s") || Math.floor(100 * Math.random()).toString();
   const hash = searchParams.get("h") || generateRandomHash();
@@ -96,6 +96,8 @@ const hl = (function () {
       timestamp,
       walletAddress,
       tokenId,
+      mintSize,
+      mintIteration,
       editionSize,
       gasPrice,
       gasUsed,
