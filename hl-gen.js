@@ -13,7 +13,7 @@ const hl = (function () {
       "123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ";
     return (
       "0x" +
-      Array(40)
+      Array(64)
         .fill(0)
         .map((_) => alphabet[(Math.random() * alphabet.length) | 0])
         .join("")
