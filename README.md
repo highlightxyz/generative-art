@@ -73,12 +73,14 @@ hl = {
     walletAddress: String, // The wallet address of the wallet minting the token
     tokenId: String, // The token ID of the token being minted
     editionSize: String, // The total number of tokens in this collection
+    mintSize: String, // The number of tokens currently being minted (1 if not batch mint)
+    mintIteration: String, // The iteration of token being rendered within the current mint
     contractAddress: String, // The address of your smart contract
     blockHash: String, // The block hash of the transaction to mint a token
     blockNumber: String, // The block number of the transaction to mint a token
     chainId: String, // The id of the blockchain
     gasPrice: String, // The price per unit of gas (in gwei) at the time of mint
-    gasUsed: String, // The amount of gas used (in gwei) in a specific mint transaction
+    gasUsed: String, // The amount of gas used in a specific mint transaction
   },
   // ...
 };

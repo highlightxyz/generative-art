@@ -9,8 +9,7 @@ const hl = (function () {
   let searchParams = new URLSearchParams(window.location.search);
 
   const generateRandomHash = () => {
-    const alphabet =
-      "123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ";
+    const alphabet = "123456789abcdef";
     return (
       "0x" +
       Array(64)
@@ -63,9 +62,10 @@ const hl = (function () {
     searchParams.get("c") ||
     [1, 5, 137, 80001][Math.floor(Math.random() * 4)].toString();
   const mintSize =
-    searchParams.get("ms") || Math.floor((19 * Math.random()) + 1).toString();
+    searchParams.get("ms") || Math.floor(19 * Math.random() + 1).toString();
   const mintIteration =
-    searchParams.get("mi") || Math.floor(((Number(mintSize) - 1) * Math.random())+1).toString();
+    searchParams.get("mi") ||
+    Math.floor((Number(mintSize) - 1) * Math.random() + 1).toString();
   const editionSize =
     searchParams.get("s") || Math.floor(100 * Math.random()).toString();
   const hash = searchParams.get("h") || generateRandomHash();
