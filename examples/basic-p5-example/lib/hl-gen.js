@@ -1,6 +1,6 @@
 /**
  * Highlight Generative Art Script : V0
- * @version: 0.1.1
+ * @version: 0.1.2
  * @description The script exposes certain values and methods that
  * can be used within code based generative art.
  */
@@ -13,7 +13,7 @@ const hl = (function () {
       "123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ";
     return (
       "0x" +
-      Array(40)
+      Array(64)
         .fill(0)
         .map((_) => alphabet[(Math.random() * alphabet.length) | 0])
         .join("")
@@ -62,6 +62,10 @@ const hl = (function () {
   const chainId =
     searchParams.get("c") ||
     [1, 5, 137, 80001][Math.floor(Math.random() * 4)].toString();
+  const mintSize =
+    searchParams.get("ms") || Math.floor((19 * Math.random()) + 1).toString();
+  const mintIteration =
+    searchParams.get("mi") || Math.floor(((Number(mintSize) - 1) * Math.random())+1).toString();
   const editionSize =
     searchParams.get("s") || Math.floor(100 * Math.random()).toString();
   const hash = searchParams.get("h") || generateRandomHash();
@@ -92,6 +96,8 @@ const hl = (function () {
       timestamp,
       walletAddress,
       tokenId,
+      mintSize,
+      mintIteration,
       editionSize,
       gasPrice,
       gasUsed,
@@ -152,7 +158,7 @@ const hl = (function () {
       scriptInfo: () => {
         return {
           name: "Highlight Generative Art Script",
-          version: "0.1.1",
+          version: "0.1.2",
           framework: "js",
         };
       },
