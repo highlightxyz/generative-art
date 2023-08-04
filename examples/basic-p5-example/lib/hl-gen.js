@@ -9,7 +9,7 @@ const hl = (function () {
   let searchParams = new URLSearchParams(window.location.search);
 
   const generateRandomHash = () => {
-    const alphabet = "123456789abcdef";
+    const alphabet = "0123456789abcdef";
     return (
       "0x" +
       Array(64)
