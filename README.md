@@ -68,7 +68,7 @@ The hl-gen.js script also gives you direct access to a number of pieces of data 
 hl.tx.hash: String
 ```
 
-The transaction hash of the blockchain transaction. If you choose to use preselected hashes in the Highlight UI, this will be one of those preselected hashes. Example value: `0x04c9a6beb46da88f7e955297e53f366654351a61f7d0a8117c12121edddc5bd6`
+The transaction hash of the blockchain transaction. If you choose to use preselected hashes in the Highlight UI, this will be one of those preselected hashes. Example value: `0x04c9a6beb46da88f7e955297e53f366654351a61f7d0a8117c12121edddc5bd6`.\
 
 **timestamp**
 
@@ -76,7 +76,7 @@ The transaction hash of the blockchain transaction. If you choose to use presele
 hl.tx.timestamp: String
 ```
 
-The timestamp of the blockchain tranaction. Note that this is a Unix timestamp in seconds (not milliseconds). Example value: `1694202763`.
+The timestamp of the blockchain tranaction. Note that this is a Unix timestamp in seconds (not milliseconds). Example value: `1694202763`.\
 
 **walletAddress**
 
