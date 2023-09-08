@@ -60,7 +60,7 @@ hl = {
 
 ## All inputs provided by hl-gen.js
 
-The hl-gen.js script also gives you direct access to a number of pieces of data from the blockchain, including the transaction hash, block hash, minting wallet address, token ID, edition size, and more. All of these pieces of data are available on the `hl.tx` object. Note that all of values are strings.
+The hl-gen.js script also gives you direct access to a number of pieces of data from the blockchain, including the transaction hash, block hash, minting wallet address, token ID, edition size, and more. All of these pieces of data are available on the `hl.tx` object. Note that all of values are returned as strings.
 
 **hash**
 
@@ -68,7 +68,7 @@ The hl-gen.js script also gives you direct access to a number of pieces of data 
 hl.tx.hash: String
 ```
 
-The transaction hash of the blockchain transaction. If you choose to use preselected hashes in the Highlight UI, this will be one of those preselected hashes. Example: `0x04c9a6beb46da88f7e955297e53f366654351a61f7d0a8117c12121edddc5bd6`
+The transaction hash of the blockchain transaction. If you choose to use preselected hashes in the Highlight UI, this will be one of those preselected hashes. Example value: `0x04c9a6beb46da88f7e955297e53f366654351a61f7d0a8117c12121edddc5bd6`
 
 **timestamp**
 
@@ -76,7 +76,55 @@ The transaction hash of the blockchain transaction. If you choose to use presele
 hl.tx.timestamp: String
 ```
 
-The timestamp of the blockchain tranaction. Note that this is a Unix timestamp in seconds (not milliseconds). Example: `1694202763`.
+The timestamp of the blockchain tranaction. Note that this is a Unix timestamp in seconds (not milliseconds). Example value: `1694202763`.
+
+**walletAddress**
+
+```javascript
+hl.tx.walletAddress: String
+```
+
+The wallet address of the minting wallet. Example value: `0x8f5BA1D922F9819eb74F5E083D6eC233e0B208E1`.
+
+**tokenId**
+
+```javascript
+hl.tx.tokenId: String
+```
+
+The token ID of the token being minted. Token IDs start at 1. Example value: `42`.
+
+**editionSize**
+
+```javascript
+hl.tx.editionSize: String
+```
+
+The number of tokens available in this collection. The creator chooses this number in the Highlight UI when creating the collection. Example value: `500`.
+
+**mintSize**
+
+```javascript
+hl.tx.mintSize: String
+```
+
+The number of tokens being minting in the current transaction. If someone mints 10 tokens in a transaction, the this value will be 10. Example value: `10`.
+
+**mintIteration**
+
+```javascript
+hl.tx.mintIteration: String
+```
+
+The token iteration currently being minted within a given transaction. If someone mints 3 tokens in a transaction, this value will iterate from 1 to 3. If only a single token is being minted in a transaction this value will be 1. Example output: `2`.
+
+**contractAddress**
+
+```javascript
+hl.tx.contractAddress: String
+```
+
+The address of the contract for this collection. Example value: `0x93A501dd8C36aE1c3D62b16a0e42222f366F4389`.
 
 ```javascript
 // hl-gen.js (partial)
