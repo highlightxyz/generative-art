@@ -60,7 +60,7 @@ hl = {
 
 ## All inputs provided by hl-gen.js
 
-The hl-gen.js script also gives you direct access to a number of pieces of data from the blockchain, including the transaction hash, block hash, minting wallet address, token ID, edition size, and more. All of these pieces of data are available on the `hl.tx` object.
+The hl-gen.js script also gives you direct access to a number of pieces of data from the blockchain, including the transaction hash, block hash, minting wallet address, token ID, edition size, and more. All of these pieces of data are available on the `hl.tx` object. Note that all of values are strings.
 
 **hash**
 
@@ -68,7 +68,15 @@ The hl-gen.js script also gives you direct access to a number of pieces of data 
 hl.tx.hash: String
 ```
 
-The transaction hash of the blockchain transaction. If you choose to use preselected hashes in the Highlight UI, this will be one of those preselected hashes.
+The transaction hash of the blockchain transaction. If you choose to use preselected hashes in the Highlight UI, this will be one of those preselected hashes. Example: `0x04c9a6beb46da88f7e955297e53f366654351a61f7d0a8117c12121edddc5bd6`
+
+**timestamp**
+
+```javascript
+hl.tx.timestamp: String
+```
+
+The timestamp of the blockchain tranaction. Note that this is a Unix timestamp in seconds (not milliseconds). Example: `1694202763`.
 
 ```javascript
 // hl-gen.js (partial)
