@@ -100,6 +100,8 @@ hl.tx.tokenId: String
 
 The token ID of the token being minted. Token IDs start at 1. Example value: `42`.
 
+---
+
 **editionSize**
 
 ```javascript
@@ -107,6 +109,8 @@ hl.tx.editionSize: String
 ```
 
 The number of tokens available in this collection. The creator chooses this number in the Highlight UI when creating the collection. Example value: `500`.
+
+---
 
 **mintSize**
 
@@ -116,6 +120,8 @@ hl.tx.mintSize: String
 
 The number of tokens being minting in the current transaction. If someone mints 10 tokens in a transaction, the this value will be 10. Example value: `10`.
 
+---
+
 **mintIteration**
 
 ```javascript
@@ -124,6 +130,8 @@ hl.tx.mintIteration: String
 
 The token iteration currently being minted within a given transaction. If someone mints 3 tokens in a transaction, this value will iterate from 1 to 3. If only a single token is being minted in a transaction this value will be 1. Example output: `2`.
 
+---
+
 **contractAddress**
 
 ```javascript
@@ -131,6 +139,45 @@ hl.tx.contractAddress: String
 ```
 
 The address of the contract for this collection. Example value: `0x93A501dd8C36aE1c3D62b16a0e42222f366F4389`.
+
+---
+
+**blockHash**
+
+```javascript
+hl.tx.blockHash: String
+```
+
+The hash of the block on which this transaction was completed. Example value: `0x080044cdf672047b7c3232a9a2547e314e5dc085eceb4c7019fc0a89e6594987`.
+
+---
+
+**blockNumber**
+
+```javascript
+hl.tx.blockNumber: String
+```
+
+The block number (sometimes called block height) of the block on which this transaction was completed. Example value: `18093981`.
+
+---
+
+**chainId**
+
+```javascript
+hl.tx.chainId: String
+```
+
+The ID of the blockchain for this transaction.
+
+| Blockchain | chainId |
+| ---------- | ------- |
+| Ethereum   | 1       |
+| Arbitrum   | 42161   |
+| Optimism   | 10      |
+| Polygon    | 137     |
+
+---
 
 ```javascript
 // hl-gen.js (partial)
