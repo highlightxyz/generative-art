@@ -170,12 +170,14 @@ hl.tx.chainId: String
 
 The ID of the blockchain for this transaction.
 
-| Blockchain | chainId |
-| ---------- | ------- |
-| Ethereum   | 1       |
-| Arbitrum   | 42161   |
-| Optimism   | 10      |
-| Polygon    | 137     |
+| Blockchain | Mainnet chainId | Testnet chainId |
+| ---------- | --------------- | --------------- |
+| Ethereum   | 1               | 5               |
+| Base       | 8453            | 84531           |
+| Arbitrum   | 42161           | 421613          |
+| Optimism   | 10              | 420             |
+| Polygon    | 137             | 80001           |
+| Zora       | 7777777         | 999             |
 
 ---
 
