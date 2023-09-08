@@ -181,6 +181,30 @@ The ID of the blockchain for this transaction.
 
 ---
 
+**gasPrice**
+
+```javascript
+hl.tx.gasPrice: String
+```
+
+The price per unit of gas (in gwei) at the time of mint. To get an idea of current gas prices on various chains, use the following links:
+
+| Blockchain | Mainnet chainId                 |
+| ---------- | ------------------------------- |
+| Ethereum   | https://etherscan.io/gastracker |
+
+---
+
+**gasUsed**
+
+```javascript
+hl.tx.gasUsed: String
+```
+
+The total amount of gas used for the mint transaction.
+
+---
+
 ```javascript
 // hl-gen.js (partial)
 
