@@ -41,6 +41,20 @@ Simply reference the hl-gen.js script in your index.html file before your main d
 
 The hl-gen.js script provides a number of methods intended to help you generate deterministic randomness in your artwork. These methods are seeded by a combination of the transaction hash (or a predetermined hash if you choose) and the token ID. It is important to use these methods to generate randomness in place of Math.random or p5’s random function to ensure that, after a token is minted, it renders identically on all subsequent renders.
 
+**random**
+
+```javascript
+hl.random(min, max) => Number
+```
+
+Both the `min` and `max` arguments are optional. Calling `hl.random` with no arguments will return a random number between 0 (inclusive) and 1 (exclusive).
+
+Calling `hl.random` with one argument (e.g. `hl.random(max)`) will return a random number between 0 (inclusive) and `max` (exclusive).
+
+Calling `hl.random` with two arguments (e.g. `hl.random(min, max)`) will return a random number between `min` (inclusive) and `max` (exclusive).
+
+---
+
 ```javascript
 // hl-gen.js (partial)
 
@@ -60,7 +74,7 @@ hl = {
 
 ## All inputs provided by hl-gen.js
 
-The hl-gen.js script also gives you direct access to a number of pieces of data from the blockchain, including the transaction hash, block hash, minting wallet address, token ID, edition size, and more. All of these pieces of data are available on the `hl.tx` object. Note that all of values are returned as strings.
+The hl-gen.js script also gives you direct access to a number of pieces of data from the blockchain, including the transaction hash, block hash, minting wallet address, token ID, edition size, and more. All of these pieces of data are available on the `hl.tx` object. **Note that all of the values are returned as strings.**
 
 **hash**
 
@@ -187,9 +201,9 @@ The ID of the blockchain for this transaction.
 hl.tx.gasPrice: String
 ```
 
-The price per unit of gas (in gwei) at the time of mint. To get an idea of current gas prices on various chains, use the following links:
+The price per unit of gas (in gwei) at the time of mint. The value will be a whole number returned as a string. To get an idea of current gas prices on various chains, use the following links:
 
-| Blockchain | Mainnet chainId                 |
+| Blockchain | Link                            |
 | ---------- | ------------------------------- |
 | Ethereum   | https://etherscan.io/gastracker |
 
@@ -204,30 +218,6 @@ hl.tx.gasUsed: String
 The total amount of gas used for the mint transaction.
 
 ---
-
-```javascript
-// hl-gen.js (partial)
-
-hl = {
-  // ...
-  tx: {
-    hash: String, // The transaction hash or pre-determined hash
-    timestamp: String, // The Unix timestamp of the block hash
-    walletAddress: String, // The wallet address of the wallet minting the token
-    tokenId: String, // The token ID of the token being minted
-    editionSize: String, // The total number of tokens in this collection
-    mintSize: String, // The number of tokens currently being minted (1 if not batch mint)
-    mintIteration: String, // The iteration of token being rendered within the current mint
-    contractAddress: String, // The address of your smart contract
-    blockHash: String, // The block hash of the transaction to mint a token
-    blockNumber: String, // The block number of the transaction to mint a token
-    chainId: String, // The id of the blockchain
-    gasPrice: String, // The price per unit of gas (in gwei) at the time of mint
-    gasUsed: String, // The amount of gas used in a specific mint transaction
-  },
-  // ...
-};
-```
 
 ## Setting token metadata using hl-gen.js
 
