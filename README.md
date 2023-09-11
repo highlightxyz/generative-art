@@ -108,7 +108,7 @@ Calling `hl.randomBool` returns a boolean value with `percent` chance of being `
 For example, calling `hl.randomBool(0.25)` will have a 25% chance of returning `true` and a 75% chance of returning `false`.
 
 ```javascript
-hl.randomBool(0.333); // false, true, false
+hl.randomBool(0.25); // false, true, false, false
 ```
 
 ---
@@ -266,11 +266,16 @@ The ID of the blockchain for this transaction.
 hl.tx.gasPrice: String
 ```
 
-The price per unit of gas (in gwei) at the time of mint. The value will be a whole number returned as a string. To get an idea of current gas prices on various chains, use the following links:
+The price per unit of gas (in gwei) at the time of mint. The value will be a whole number returned as a string. To get an idea of current gas prices on various chains, reference the following links:
 
-| Blockchain | Link                            |
-| ---------- | ------------------------------- |
-| Ethereum   | https://etherscan.io/gastracker |
+| Blockchain | Link                                |
+| ---------- | ----------------------------------- |
+| Ethereum   | https://etherscan.io/gastracker     |
+| Base       | https://cointool.app/gasPrice/base  |
+| Arbitrum   | https://cointool.app/gasPrice/arb   |
+| Optimism   | -                                   |
+| Polygon    | https://cointool.app/gasPrice/matic |
+| Zora       | -                                   |
 
 ---
 
@@ -280,7 +285,7 @@ The price per unit of gas (in gwei) at the time of mint. The value will be a who
 hl.tx.gasUsed: String
 ```
 
-The total amount of gas used for the mint transaction.
+The total amount of gas used for the mint transaction. Example value: `51`.
 
 ---
 
