@@ -69,6 +69,50 @@ hl.random(100, 200); // 187.3693763744086, 110.8005760004744, 155.7921847794205
 
 ---
 
+**randomInt**
+
+```javascript
+hl.randomInt(min, max) => Number
+```
+
+You can call `hl.randomInt` with 0, 1, or 2 arguments.
+
+Calling `hl.random` with 0 arguments returns a random integer between 0 (inclusive) and 100 (inclusive).
+
+```javascript
+hl.randomInt(); // 28, 63, 39
+```
+
+Calling `hl.randomInt` with one argument, `max`, returns a random integer between 0 (inclusive) and `max` (inclusive).
+
+```javascript
+hl.randomInt(10); // 4, 10, 2
+```
+
+Calling `hl.randomInt` with two arguments, `min` and `max`, returns a integer number between `min` (inclusive) and `max` (inclusive).
+
+```javascript
+hl.random(100, 200); // 162, 117, 181
+```
+
+---
+
+**randomBool**
+
+```javascript
+hl.randomBool(percent) => Boolean
+```
+
+Calling `hl.randomBool` returns a boolean value with `percent` chance of being `true`. Passing `0` will always result in a return value of `false` while passing 1 will always result in a return value of `true`.
+
+For example, calling `hl.randomBool(0.25)` will have a 25% chance of returning `true` and a 75% chance of returning `false`.
+
+```javascript
+hl.randomBool(0.333); // false, true, false
+```
+
+---
+
 ```javascript
 // hl-gen.js (partial)
 
