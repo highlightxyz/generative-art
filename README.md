@@ -113,22 +113,29 @@ hl.randomBool(0.333); // false, true, false
 
 ---
 
-```javascript
-// hl-gen.js (partial)
+**randomElement**
 
-hl = {
-  // ...
-  random: () => Number, // Random number between 0 (inclusive) and 1 (exclusive)
-  random: (max) => Number, // Random number between 0 (inclusive) and max (exclusive)
-  random: (min, max) => Number, // Random number between min (inclusive) and max (exclusive)
-  randomInt: () => Number, // Random integer between 0 (inclusive) and 100 (inclusive)
-  randomInt: (max) => Number, // Random integer between 0 (inclusive) and max (inclusive)
-  randomInt: (min, max) => Number, // Random integer between min (inclusive) and max (inclusive)
-  randomBool: (percent) => Boolean, // Random bool with percent chance of being true
-  randomElement: (array) => any, // Random element from the provided array
-  // ...
-};
+```javascript
+hl.randomElement(array) => any
 ```
+
+Calling `hl.randomElement` and passing in an array returns a random element from that array. Each element in the array has an equal chance of being returned. Passing in an empty array will return `undefined`.
+
+The array you pass in can have members all of the same type (`[3, 6, 2, 8]`) or of different types (`["red", 7, true]`).
+
+```javascript
+hl.randomElement([
+  "red",
+  "orange",
+  "yellow",
+  "green",
+  "blue",
+  "indigo",
+  "violet",
+]); // "orange", "blue", "red"
+```
+
+---
 
 ## All inputs provided by hl-gen.js
 
