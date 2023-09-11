@@ -47,11 +47,25 @@ The hl-gen.js script provides a number of methods intended to help you generate 
 hl.random(min, max) => Number
 ```
 
-Both the `min` and `max` arguments are optional. Calling `hl.random` with no arguments will return a random number between 0 (inclusive) and 1 (exclusive).
+You can call `hl.random` with 0, 1, or 2 arguments.
 
-Calling `hl.random` with one argument (e.g. `hl.random(max)`) will return a random number between 0 (inclusive) and `max` (exclusive).
+Calling `hl.random` with 0 arguments returns a random number between 0 (inclusive) and 1 (exclusive).
 
-Calling `hl.random` with two arguments (e.g. `hl.random(min, max)`) will return a random number between `min` (inclusive) and `max` (exclusive).
+```javascript
+hl.random(); // 0.5265596949029714, 0.08938326966017485, 0.6286451765336096
+```
+
+Calling `hl.random` with one argument, `max`, returns a random number between 0 (inclusive) and `max` (exclusive).
+
+```javascript
+hl.random(10); // 6.383272618986666, 1.6330017894506454, 0.20435922779142857
+```
+
+Calling `hl.random` with two arguments, `min` and `max`, returns a random number between `min` (inclusive) and `max` (exclusive).
+
+```javascript
+hl.random(100, 200); // 187.3693763744086, 110.8005760004744, 155.7921847794205
+```
 
 ---
 
