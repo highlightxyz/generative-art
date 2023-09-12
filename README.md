@@ -412,7 +412,13 @@ draw() {
 
 ## Example usage
 
-All of the data inputs and methods discussed above are available on the global `hl` object, which you can reference in your code provided you’ve included hl-gen.js in your project. This example illustrates a simple p5.js sketch that draws a randomly sized circle in the middle of the canvas, fills it with either red, green, or blue, displays the minting wallet address in the center of the circle, applies the size and color of the circle as traits of the token, and captures a preview image.
+All of the data inputs and methods discussed above are available on the global `hl` object, which you can reference in your code provided you’ve included hl-gen.js in your project. This example illustrates a simple p5.js sketch that:
+
+- Draws a randomly sized circle in the middle of the canvas
+- Fills it with either red, green, or blue
+- Displays the minting wallet address in the center of the circle
+- Applies the size and color of the circle as traits of the token
+- Captures a preview image
 
 ```javascript
 function setup() {
