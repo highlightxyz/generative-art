@@ -19,7 +19,9 @@ lib/
 ↳ hl-gen.js
 ```
 
-Remember to zip the contents of your project folder, not the folder itself.
+Remember to zip the contents of your project folder, not the folder itself:
+
+![Screenshot of a set of files being zipped, as opposed to a directory being zipped.](/assets/img/zip-screenshot.png)
 
 ## Including hl-gen.js
 
