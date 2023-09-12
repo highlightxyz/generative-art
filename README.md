@@ -27,11 +27,9 @@ Remember to zip the contents of your project folder, not the folder itself:
 
 Every project should include the hl-gen.js script, which gives you access to blockchain data and makes it possible to render individual tokens that have been minted. Download hl-gen.js and include it in your project.
 
-Simply reference the hl-gen.js script in your index.html file before your main drawing script:
+In your `index.html` file, reference the hl-gen.js script before any aof your drawing code:
 
 ```javascript
-// index.html
-
 <head>
   <script src="lib/hl-gen.js"></script>
   <script src="lib/p5.min.js"></script>
