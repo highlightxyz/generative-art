@@ -1,11 +1,21 @@
 # How to create a generative art collection on Highlight
 
-To create a generative art collection on Highlight, you’ll just need to upload a .zip file of your code-based generative project (make sure to zip all the files together, not the folder containing them). The .zip should include:
+Generative art collections are Highlight are collections of NFTs that are rendered by an artist's code at they time they're minted. The `hl-gen.js` script powers these collections by giving artists access to:
 
-- **index.html**: This file renders your tokens.
-- **hl-gen.js**: This file gives you access to data from the blockchain, helps you generate deterministic randomness in your tokens, and provides functions to store attributes and capture preview images
-- Any libraries required to render your tokens, like p5.js, three.js, tone.js, etc.
-- Any other files required to render your tokens, including images, fonts, video files, etc.
+- Numerous pieces of data from the blockchain
+- Methods for generating deterministic randomness
+- Methods to set metadata for the tokens in your collection
+- A method to trigger the capture of a preview image for a token
+
+Technically speaking, generative art collections on Highlight are simply packaged web pages. To create a generative art collection on Highlight:
+
+- Navigate to https://highlight.xyz/tools/
+- Click **Create a collection** and choose **Generative series**
+- Upload a .zip file of your code-based generative project (make sure to zip all the files together, not the folder containing them). The .zip should include:
+  - **index.html**: This file renders your tokens.
+  - **hl-gen.js**: This file gives you access to data from the blockchain, helps you generate deterministic randomness in your tokens, and provides functions to store attributes and capture preview images
+  - Any libraries required to render your tokens, like p5.js, three.js, tone.js, etc.
+  - Any other files required to render your tokens, including images, fonts, video files, etc.
 
 **[Download an example project &darr;](examples/basic-p5-example.zip)**
 
@@ -416,6 +426,8 @@ draw() {
   }
 }
 ```
+
+To determine your script is being run in order to capture a preview image, you can use the `hl.context.previewMode`. This will return `true` if a preview image is being captured and `false` if the script is being run in live view mode.
 
 ## Example usage
 
