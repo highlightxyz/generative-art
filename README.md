@@ -47,21 +47,21 @@ The hl-gen.js script provides a number of methods intended to help you generate 
 hl.random(min, max) => Number
 ```
 
-You can call `hl.random` with 0, 1, or 2 arguments.
+You can call `hl.random()` with 0, 1, or 2 arguments.
 
-Calling `hl.random` with 0 arguments returns a random number between 0 (inclusive) and 1 (exclusive).
+Calling `hl.random()` with 0 arguments returns a random number between 0 (inclusive) and 1 (exclusive).
 
 ```javascript
 hl.random(); // 0.5265596949029714, 0.08938326966017485, 0.6286451765336096
 ```
 
-Calling `hl.random` with one argument, `max`, returns a random number between 0 (inclusive) and `max` (exclusive).
+Calling `hl.random()` with one argument, `max`, returns a random number between 0 (inclusive) and `max` (exclusive).
 
 ```javascript
 hl.random(10); // 6.383272618986666, 1.6330017894506454, 0.20435922779142857
 ```
 
-Calling `hl.random` with two arguments, `min` and `max`, returns a random number between `min` (inclusive) and `max` (exclusive).
+Calling `hl.random()` with two arguments, `min` and `max`, returns a random number between `min` (inclusive) and `max` (exclusive).
 
 ```javascript
 hl.random(100, 200); // 187.3693763744086, 110.8005760004744, 155.7921847794205
@@ -75,21 +75,21 @@ hl.random(100, 200); // 187.3693763744086, 110.8005760004744, 155.7921847794205
 hl.randomInt(min, max) => Number
 ```
 
-You can call `hl.randomInt` with 0, 1, or 2 arguments.
+You can call `hl.randomInt()` with 0, 1, or 2 arguments.
 
-Calling `hl.random` with 0 arguments returns a random integer between 0 (inclusive) and 100 (inclusive).
+Calling `hl.randomInt()` with 0 arguments returns a random integer between 0 (inclusive) and 100 (inclusive).
 
 ```javascript
 hl.randomInt(); // 28, 63, 39
 ```
 
-Calling `hl.randomInt` with one argument, `max`, returns a random integer between 0 (inclusive) and `max` (inclusive).
+Calling `hl.randomInt()` with one argument, `max`, returns a random integer between 0 (inclusive) and `max` (inclusive).
 
 ```javascript
 hl.randomInt(10); // 4, 10, 2
 ```
 
-Calling `hl.randomInt` with two arguments, `min` and `max`, returns a integer number between `min` (inclusive) and `max` (inclusive).
+Calling `hl.randomInt()` with two arguments, `min` and `max`, returns a integer number between `min` (inclusive) and `max` (inclusive).
 
 ```javascript
 hl.random(100, 200); // 162, 117, 181
@@ -103,7 +103,7 @@ hl.random(100, 200); // 162, 117, 181
 hl.randomBool(percent) => Boolean
 ```
 
-Calling `hl.randomBool` returns a boolean value with `percent` chance of being `true`. Passing `0` will always result in a return value of `false` while passing 1 will always result in a return value of `true`.
+Calling `hl.randomBool()` returns a boolean value with `percent` chance of being `true`. Passing `0` will always result in a return value of `false` while passing 1 will always result in a return value of `true`.
 
 For example, calling `hl.randomBool(0.25)` will have a 25% chance of returning `true` and a 75% chance of returning `false`.
 
@@ -119,7 +119,7 @@ hl.randomBool(0.25); // false, true, false, false
 hl.randomElement(array) => any
 ```
 
-Calling `hl.randomElement` and passing in an array returns a random element from that array. Each element in the array has an equal chance of being returned. Passing in an empty array will return `undefined`.
+Calling `hl.randomElement()` and passing in an array returns a random element from that array. Each element in the array has an equal chance of being returned. Passing in an empty array will return `undefined`.
 
 The array you pass in can have members all of the same type (`[3, 6, 2, 8]`) or of different types (`["red", 7, true]`).
 
@@ -291,7 +291,7 @@ The total amount of gas used for the mint transaction. Example value: `51`.
 
 ## Setting token metadata using hl-gen.js
 
-Aside from accessing data, hl-gen.js gives you the ability to set metadata for your tokens by calling the provided methods. You can set the name, description, or traits of a token. All of these methoda are available on the global `hl.token` object. The `setName` and `setDescription` methods take a String as their only argument, while setTraits takes an object with the keys representing the trait names and the values representing the trait values.
+Aside from accessing data, hl-gen.js gives you the ability to set metadata for your tokens by calling the provided methods. You can set the name, description, or traits of a token. All of these methoda are available on the global `hl.token` object. The `hl.setName()` and `hl.setDescription()` methods take a String as their only argument, while setTraits takes an object with the keys representing the trait names and the values representing the trait values.
 
 **setTraits**
 
@@ -299,7 +299,7 @@ Aside from accessing data, hl-gen.js gives you the ability to set metadata for y
 hl.token.setTraits(traits) => Void
 ```
 
-Sets the traits for the token, where `traits` is an object whose key-value pairs represent trait names and values. You should call `hl.setTraits` as soon as possible in your script, before drawing or preloading if possible. This ensures Highlight can calculate traits as quickly as possible when testing and revealing tokens.
+Sets the traits for the token, where `traits` is an object whose key-value pairs represent trait names and values. You should call `hl.setTraits()` as soon as possible in your script, before drawing or preloading if possible. This ensures Highlight can calculate traits as quickly as possible when testing and revealing tokens.
 
 In this example, we set 3 traits for a token, color, size, and speed:
 
@@ -386,7 +386,7 @@ In this example, a single token might have the name “Small Red token” and th
 
 ## Capturing preview images programmatically
 
-Whenever one of your tokens is minted, Highlight automatically captures and assigns a preview image for that token. This preview image is shown when it is impractical to show a live view, such as in large grid views. You can trigger this capture programmatically or by specifying a time delay in the Highlight UI. Triggering the capture programmatically allows you to control exactly when the preview image is captured as your code runs. The hl-gen.js script provides the `hl.token.capturePreview` method to trigger the capture.
+Whenever one of your tokens is minted, Highlight automatically captures and assigns a preview image for that token. This preview image is shown when it is impractical to show a live view, such as in large grid views. You can trigger this capture programmatically or by specifying a time delay in the Highlight UI. Triggering the capture programmatically allows you to control exactly when the preview image is captured as your code runs. The hl-gen.js script provides the `hl.token.capturePreview()` method to trigger the capture.
 
 ```javascript
 hl.token.capturePreview() => Void
