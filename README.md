@@ -137,11 +137,12 @@ hl.randomElement([
 
 ---
 
-## All inputs provided by hl-gen.js
+## Data provided by hl-gen.js
 
-The hl-gen.js script also gives you direct access to a number of pieces of data from the blockchain, including the transaction hash, block hash, minting wallet address, token ID, edition size, and more. All of these pieces of data are available on the `hl.tx` object. **Note that all of the values are returned as strings.**
+The hl-gen.js script also gives you direct access to a number of pieces of data from the blockchain, including the transaction hash, block hash, minting wallet address, token ID, edition size, and more. All of these pieces of data are available on the `hl.tx` object. **⚠️ Note that all of the values are returned as strings.**
 
 **hash**
+⚠️
 
 ```javascript
 hl.tx.hash: String
