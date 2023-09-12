@@ -293,6 +293,26 @@ The total amount of gas used for the mint transaction. Example value: `51`.
 
 Aside from accessing data, hl-gen.js gives you the ability to set metadata for your tokens by calling the provided methods. You can set the name, description, or traits of a token. The setName and setDescription methods take a String as their only argument, while setTraits takes an object with the keys representing the trait names and the values representing the trait values.
 
+**setTraits**
+
+```javascript
+hl.token.setTraits(traits) => Void
+```
+
+Sets the traits for the token, where `traits` is an object whose key value pairs represent trait names and values. You should call `hl.setTraits` as soon as possible in your script, before drawing or preloading if possible. This ensures Highlight can calculate traits as quickly as possible when testing and revealing tokens.
+
+In this example, we set 3 traits for a token, color, size, and speed:
+
+```javascript
+hl.token.setTraits({
+  Color: "Blue",
+  Size: "Medium",
+  Speed: "Fast",
+});
+```
+
+---
+
 ```javascript
 // hl-gen.js (partial)
 
