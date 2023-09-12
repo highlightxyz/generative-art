@@ -299,7 +299,7 @@ Aside from accessing data, hl-gen.js gives you the ability to set metadata for y
 hl.token.setTraits(traits) => Void
 ```
 
-Sets the traits for the token, where `traits` is an object whose key value pairs represent trait names and values. You should call `hl.setTraits` as soon as possible in your script, before drawing or preloading if possible. This ensures Highlight can calculate traits as quickly as possible when testing and revealing tokens.
+Sets the traits for the token, where `traits` is an object whose key-value pairs represent trait names and values. You should call `hl.setTraits` as soon as possible in your script, before drawing or preloading if possible. This ensures Highlight can calculate traits as quickly as possible when testing and revealing tokens.
 
 In this example, we set 3 traits for a token, color, size, and speed:
 
@@ -313,42 +313,76 @@ hl.token.setTraits({
 
 ---
 
-```javascript
-// hl-gen.js (partial)
+**getTraits**
 
-hl = {
-  // ...
-  token: {
-    setTraits: (traits) => Void, // Sets the traits for the token
-    getTraits: () => Object, // Returns the traits for the token
-    setName: (name) => Void, // Sets the name for the token
-    getName: () => String, // Returns the name for the token
-    setDescription: (description) => Void, // Sets the description for the token
-    getDescription: () => String, // Returns the description for the token
-  },
-  // ...
-};
+```javascript
+hl.token.getTraits() => Object
 ```
+
+Returns an object whose key-value pairs represent the traits that have been set for this token.
+
+---
+
+**setName**
+
+```javascript
+hl.token.setName(name) => Void
+```
+
+Sets the name for this particular token. Note that you are not required to set names for individual tokens. If you don't, token names will simply be the token ID preced by a "#" sign, e.g. "#1", "#74", "#492", etc.
+
+---
+
+**getName**
+
+```javascript
+hl.token.getName() => String
+```
+
+Returns the name of the token.
+
+---
+
+**setDescription**
+
+```javascript
+hl.token.setDescription(description) => Void
+```
+
+Sets the description for this particular token. Note that you are not required to set descriptions for individual tokens. If you don't, token descriptions will simply appear as the collection description you provide in the Highlight UI.
+
+---
+
+**getDescription**
+
+```javascript
+hl.token.getDescription() => String
+```
+
+Returns the description of the token.
+
+---
 
 For example, setting the name, description, and some traits for a token might look like this:
 
 ```javascript
-// sketch.js
+let color = hl.randomElement(["Red", "Green", "Blue"]);
+let size = hl.randomElement(["Small", "Medium", "Large"]);
 
-let color = hl.randomElement(["red", "green", "blue"]);
-let size = hl.randomElement(["small", "medium", "large"]);
 hl.token.setName(`${size} ${color} token`);
+
 hl.token.setDescription(
   `This is one token from a series of many. This particular token is ${size} and 
   ${color}.`
 );
+
 hl.token.setTraits({
   Size: size,
   Color: color,
 });
 ```
 
-In this case, a single token might have the name “small red token” and the description “This is one token from a series of many. This particular token is small and red.” The token’s traits would also reflect these values. Note that token name and token description are independent from collection name and collection description, which are set in the Highlight UI, not your code.
+In this example, a single token might have the name “Small Red token” and the description “This is one token from a series of many. This particular token is Small and Red.” The token’s traits would also reflect these values. Note that token name and token description are independent from collection name and collection description, which are set in the Highlight UI, not your code.
 
 ## Capturing preview images programmatically
 
