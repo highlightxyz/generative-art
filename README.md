@@ -1,15 +1,15 @@
-# How to create a generative art collection on Highlight
+# Creating generative art on Highlight
 
-Generative art collections are Highlight are collections of NFTs that are rendered by an artist's code at they time they're minted. The `hl-gen.js` script powers these collections by giving artists access to:
+Generative art collections are Highlight are collections of NFTs that are rendered by an artist's code at the time they're minted. The `hl-gen.js` script powers these collections by giving artists access to:
 
+- Methods for generating deterministic randomness in your art
 - Numerous pieces of data from the blockchain
-- Methods for generating deterministic randomness
-- Methods to set metadata for the tokens in your collection
+- Methods to set metadata for the tokens in a collection
 - A method to trigger the capture of a preview image for a token
 
 Technically speaking, generative art collections on Highlight are simply packaged web pages. To create a generative art collection on Highlight:
 
-- Navigate to https://highlight.xyz/tools/
+- Go to https://highlight.xyz/tools/
 - Click **Create a collection** and choose **Generative series**
 - Upload a .zip file of your code-based generative project (make sure to zip all the files together, not the folder containing them). The .zip should include:
   - **index.html**: This file renders your tokens.
@@ -21,17 +21,15 @@ Technically speaking, generative art collections on Highlight are simply package
 
 Your .zip should not be larger than 2GB. All project assets are stored on Arweave, a decentralized and permanent storage network. A simple project that uses the p5.js library might look like this:
 
-**Example project structure**
-
 ```
 index.html
 sketch.js
 lib/
-↳ p5.min.js
-↳ hl-gen.js
+  ↳ p5.min.js
+  ↳ hl-gen.js
 ```
 
-Remember to zip the contents of your project folder, not the folder itself:
+When zipping your project, ensure that you select a group of files to zip, _not_ the folder itself:
 
 ![Screenshot of a set of files being zipped, as opposed to a directory being zipped.](/assets/img/zip-screenshot.png)
 
