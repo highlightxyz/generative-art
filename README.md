@@ -7,6 +7,8 @@ To create a generative art collection on Highlight, you’ll just need to upload
 - Any libraries required to render your tokens, like p5.js, three.js, tone.js, etc.
 - Any other files required to render your tokens, including images, fonts, video files, etc.
 
+**Download an example project**
+
 Your .zip should not be larger than 2GB. All project assets are stored on Arweave, a decentralized and permanent storage network. A simple project that uses the p5.js library might look like this:
 
 **Example project structure**
@@ -23,7 +25,7 @@ Remember to zip the contents of your project folder, not the folder itself:
 
 ![Screenshot of a set of files being zipped, as opposed to a directory being zipped.](/assets/img/zip-screenshot.png)
 
-## Including hl-gen.js
+## Adding hl-gen.js to your project
 
 Every project should include the hl-gen.js script, which gives you access to blockchain data and makes it possible to render individual tokens that have been minted. Download hl-gen.js and include it in your project.
 
@@ -139,7 +141,10 @@ hl.randomElement([
 
 ## Data provided by hl-gen.js
 
-The hl-gen.js script also gives you direct access to a number of pieces of data from the blockchain, including the transaction hash, block hash, minting wallet address, token ID, edition size, and more. All of these pieces of data are available on the `hl.tx` object. **⚠️ Note that all of the values are returned as strings.**
+The hl-gen.js script also gives you direct access to a number of pieces of data from the blockchain, including the transaction hash, block hash, minting wallet address, token ID, edition size, and more. All of these pieces of data are available on the `hl.tx` object.
+
+> [!NOTE]
+> Note that all of the values discussed below are returned as strings.
 
 **hash**
 
