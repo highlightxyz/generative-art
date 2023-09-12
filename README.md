@@ -7,7 +7,7 @@ To create a generative art collection on Highlight, you’ll just need to upload
 - Any libraries required to render your tokens, like p5.js, three.js, tone.js, etc.
 - Any other files required to render your tokens, including images, fonts, video files, etc.
 
-[### Download an example project &darr;](examples/basic-p5-example.zip)
+**[Download an example project &darr;](examples/basic-p5-example.zip)**
 
 Your .zip should not be larger than 2GB. All project assets are stored on Arweave, a decentralized and permanent storage network. A simple project that uses the p5.js library might look like this:
 
