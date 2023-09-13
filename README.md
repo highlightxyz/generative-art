@@ -49,7 +49,7 @@ In your `index.html` file, reference the hl-gen.js script before any aof your dr
 
 ## Generating deterministic randomness using hl-gen.js
 
-The hl-gen.js script provides a number of methods intended to help you generate deterministic randomness in your artwork. These methods are seeded by a combination of the transaction hash (or a predetermined hash if you choose) and the token ID. It is important to use these methods to generate randomness in place of Math.random or p5’s random function to ensure that, after a token is minted, it renders identically on all subsequent renders.
+The hl-gen.js script provides a number of methods intended to help you generate deterministic randomness in your artwork. These methods are seeded by a combination of the transaction hash (or a predetermined hash if you choose) and the token ID. It is important to use these methods to generate randomness in place of `Math.random()` or p5’s random function to ensure that, after a token is minted, it renders identically on all subsequent renders.
 
 **random**
 
