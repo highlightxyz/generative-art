@@ -9,10 +9,12 @@ Generative art collections are Highlight are sets of NFTs that are rendered by a
 
 At their core, generative art collections on Highlight are simply packaged web pages that use data inputs to render visual outputs. Projects should contain the following:
 
-- **index.html**: This file renders your tokens.
-- **hl-gen.js**: This file gives you access to data from the blockchain, helps you generate deterministic randomness in your tokens, and provides functions to store attributes and capture preview images
+- **index.html**: This file displays your tokens (required)
+- **hl-gen.js**: This file gives you access to data from the blockchain, helps you generate deterministic randomness in your tokens, and provides functions to store attributes and capture preview images (required)
 - Any libraries required to render your tokens, like p5.js, three.js, tone.js, etc.
 - Any other files required to render your tokens, including images, fonts, video files, etc.
+
+Note that, in general, you should not reference external libraries or files, as these references may break in the future. Any resource your project needs to display properly should be included locally.
 
 For example, a simple project using p5.js might look like this:
 
@@ -22,6 +24,11 @@ sketch.js
 lib/
   ↳ p5.min.js
   ↳ hl-gen.js
+fonts/
+  ↳ IBMPlexMono-Regular.ttf
+textures/
+  ↳ texture-1.png
+  ↳ texture-2.png
 ```
 
 Once you're ready to test or deploy your project on Highlight:
