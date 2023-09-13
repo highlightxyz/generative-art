@@ -14,16 +14,7 @@ At their core, generative art collections on Highlight are simply packaged web p
 - Any libraries required to render your tokens, like p5.js, three.js, tone.js, etc.
 - Any other files required to render your tokens, including images, fonts, video files, etc.
 
-Once you're ready to test or deploy your project on Highlight:
-
-- Create a .zip of your project files, ensuring that you select the group of files to zip, _not_ the folder itself:
-  ![Screenshot of a set of files being zipped, as opposed to a directory being zipped.](/assets/img/zip-screenshot.png)
-- Your .zip should not be larger than 2GB. All project assets are stored on Arweave, a decentralized and permanent storage network
-- Go to https://highlight.xyz/tools/ and connect your wallet
-- Click **Create a collection** and choose **Generative series**
-- Upload the .zip file of your code-based generative project
-
-**[Download an example project &darr;](examples/basic-p5-example.zip)**
+For example, a simple project using p5.js might look like this:
 
 ```
 index.html
@@ -33,9 +24,20 @@ lib/
   ↳ hl-gen.js
 ```
 
+Once you're ready to test or deploy your project on Highlight:
+
+- Create a .zip of your project files, ensuring that you select the group of files to zip, _not_ the folder itself:
+  ![Screenshot of a set of files being zipped, as opposed to a directory being zipped.](/assets/img/zip-screenshot.png)
+- Your .zip should not be larger than 2GB. All project assets are stored on Arweave, a decentralized and permanent storage network
+- Go to https://highlight.xyz/tools/ and connect your wallet
+- Click **Create a collection** and choose **Generative series**
+- Upload the .zip file of your code-based generative project and continue with testing
+
+**[Download an example project &darr;](examples/basic-p5-example.zip)**
+
 ## Adding hl-gen.js to your project
 
-Every project should include the hl-gen.js script, which gives you access to blockchain data and makes it possible to render individual tokens that have been minted. Download hl-gen.js and include it in your project.
+Every project must include the hl-gen.js script, which gives you access to blockchain data and makes it possible to render individual tokens that have been minted. [Download hl-gen.js](./hl-gen.js) and include it in your project.
 
 In your `index.html` file, reference the hl-gen.js script before any aof your drawing code:
 
