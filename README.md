@@ -40,7 +40,7 @@ Once you're ready to test or deploy your project on Highlight:
 - Click **Create a collection** and choose **Generative series**
 - Upload the .zip file of your code-based generative project and continue with testing
 
-**[Download an example project &darr;](examples/basic-p5-example.zip)**
+**[Download an example project &darr;](./examples/basic-p5-example/EXAMPLE_UPLOAD_ME.zip)**
 
 ## Adding hl-gen.js to your project
 
@@ -357,7 +357,7 @@ For example, if you're running your project locally at `http://localhost:3000/`,
 
 ## Setting token metadata using hl-gen.js
 
-Aside from accessing data, hl-gen.js gives you the ability to set metadata for your tokens by calling the provided methods. You can set the name, description, or traits of a token. All of these methoda are available on the global `hl.token` object. The `hl.setName()` and `hl.setDescription()` methods take a String as their only argument, while setTraits takes an object with the keys representing the trait names and the values representing the trait values.
+Aside from accessing data, hl-gen.js gives you the ability to set metadata for your tokens by calling the provided methods. This metadata appears both on Highlight and and third-party platforms like OpenSea when displaying your collections and tokens from it. You can set the name, description, or traits of a token. All of these methoda are available on the global `hl.token` object. The `hl.setName()` and `hl.setDescription()` methods take a String as their only argument, while setTraits takes an object with the keys representing the trait names and the values representing the trait values.
 
 **setTraits**
 
@@ -365,7 +365,7 @@ Aside from accessing data, hl-gen.js gives you the ability to set metadata for y
 hl.token.setTraits(traits) => Void
 ```
 
-Sets the traits for the token, where `traits` is an object whose key-value pairs represent trait names and values. You should call `hl.setTraits()` as soon as possible in your script, before drawing or preloading if possible. This ensures Highlight can calculate traits as quickly as possible when testing and revealing tokens.
+Sets the traits for the token, where `traits` is an object whose key-value pairs represent trait names and values. The values of the `traits` object will all be converted to Strings, so you should not use Arrays or Objects. You should call `hl.setTraits()` as soon as possible in your script, before drawing or preloading if possible. This ensures Highlight can calculate traits as quickly as possible when testing and revealing tokens.
 
 In this example, we set 3 traits for a token, color, size, and speed:
 
@@ -452,13 +452,17 @@ In this example, a single token might have the name “Small Red token” and th
 
 ## Capturing preview images programmatically
 
-Whenever one of your tokens is minted, Highlight automatically captures and assigns a preview image for that token. This preview image is shown when it is impractical to show a live view, such as in large grid views. You can trigger this capture programmatically or by specifying a time delay in the Highlight UI. Triggering the capture programmatically allows you to control exactly when the preview image is captured as your code runs. The hl-gen.js script provides the `hl.token.capturePreview()` method to trigger the capture.
+Whenever one of your tokens is minted, Highlight automatically captures and assigns a preview image for that token. This preview image is shown when it is impractical to show a live view, including when a grid a grid of many tokens is shown.
+
+You can trigger this capture programmatically or by specifying a time delay in the Highlight UI. Triggering the capture programmatically allows you to control exactly when the preview image is captured as your code runs. The hl-gen.js script provides the `hl.token.capturePreview()` method to trigger the capture.
 
 ```javascript
 hl.token.capturePreview() => Void
 ```
 
 To capture your preview images programmatically, choose this option in the **Preview images** step of the collection creation process and call the provided `hl.token.capturePreview()` method in your code when you want to capture the preview image.
+
+Images are captured as .png by default, but if you your index.html page renders an SVG element, you may choose to capture your preview image as an .svg instead by selecting **Capture a specific element** under the **Preview image area** option in the **Preview images** step of the creation process in the Highlight UI.
 
 When capturing a preview image, we’ll run your code in the background while listening for `hl.token.capturePreview()` to be called. If you’re using this method, ensure it is called within a few minutes of your script starting.
 
@@ -484,7 +488,7 @@ All of the data inputs and methods discussed above are available on the global `
 
 - Draws a randomly sized circle in the middle of the canvas
 - Fills it with either red, green, or blue
-- Displays the minting wallet address in the center of the circle
+- Displays the minting wallet address, token ID, and timestamp in the center of the circle
 - Applies the size and color of the circle as traits of the token
 - Captures a preview image
 
@@ -505,7 +509,19 @@ function draw() {
   ellipse(0, 0, size);
   fill("white");
   textAlign(CENTER, CENTER);
-  text(hl.tx.walletAddress, 0, 0);
+  text(
+    `${hl.tx.walletAddress}\n
+    ${hl.tx.tokenId}\n
+    ${hl.tx.timestamp}`,
+    0,
+    0
+  );
+
+  hl.token.setName(`My token #${hl.tx.tokenId}`);
+
+  hl.token.description(
+    `A token with token ID ${hl.tx.tokenId}. It is ${size} and ${color}.`
+  );
 
   hl.token.setTraits({
     Size: size,

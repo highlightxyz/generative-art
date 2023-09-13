@@ -1,7 +1,16 @@
-/*
- * Globals
- */
-let backgroundColor, color1, color2, color3, color4, chosenColors;
+// Use the hl.randomInt() method to select a random number of rectanlges to draw
+// from 3–10
+let numberOfRectangles = hl.randomInt(3, 10);
+
+// Choose a random number to represent the color saturation from 0–100
+let randomSaturation = hl.randomInt(100);
+
+// Choose a random number to represent the color brightness from 0–100
+let randomBrightness = hl.randomInt(100);
+
+// Initialize variables we'll need later
+let randomColors = [];
+let backgroundColor;
 let plexMono;
 
 /*
@@ -22,24 +31,35 @@ function setup() {
   frameRate(60);
   pixelDensity(2);
 
-  // Choose colors
-  backgroundColor = hl.randomElement(["#ffffff", "#000000"]);
-  color1 = color(hl.random(0, 360), 20, 100);
-  color2 = color(hl.random(0, 360), 20, 100);
-  color3 = color(hl.random(0, 360), 20, 100);
-  color4 = color(hl.random(0, 360), 20, 100);
-  chosenColors = [color1, color2, color3, color4];
+  // Select a random background color (white or black) using the
+  // hl.randomElement() method
+  backgroundColor = hl.randomElement(["white", "black"]);
 
-  // Set traits
+  // For however many rectangles we're going to draw, choose that many random
+  // colors using the hl.randomInt() method to select a different hue for each
+  // one
+  for (let i = 0; i < numberOfRectangles; i++) {
+    randomColors.push(
+      color(hl.randomInt(0, 360), randomSaturation, randomBrightness)
+    );
+  }
+
+  // Create an object defining the traits of our token
   let traits = {
+    "Number of Rectangles": numberOfRectangles,
     "Background Color": backgroundColor,
-    "Hue 1": hue(color1).toFixed(2),
-    "Hue 2": hue(color2).toFixed(2),
-    "Hue 3": hue(color3).toFixed(2),
-    "Hue 4": hue(color4).toFixed(2),
+    "Color Saturation": randomSaturation,
+    "Color Brightness": randomBrightness,
   };
 
+  // Set these traits so Highlight can read them
   hl.token.setTraits(traits);
+
+  // Also set a name and description for this token
+  hl.token.setName(`Example token #${hl.tx.tokenId}`);
+  hl.token.setDescription(
+    `This is an token generated as part of an example project for using hl-gen.js. It has ${numberOfRectangles} rectangles with random colors. The colors have a saturation of ${randomSaturation} and a brightness of ${randomBrightness}. The timestamp of the mint was ${hl.tx.timestamp}. The minting wallet address was ${hl.tx.walletAddress}`
+  );
 }
 
 /*
@@ -50,12 +70,13 @@ function draw() {
   background(backgroundColor);
 
   let margin = width * 0.1;
-  let gap = width * 0.025;
-  let rectWidth = (width - margin * 2 - gap * 3) / 4;
+  let gap = width * 0.01;
+  let rectWidth =
+    (width - margin * 2 - gap * (numberOfRectangles - 1)) / numberOfRectangles;
 
-  // Draw 4 rectangles, 1 of each chosen color
-  for (let n = 0; n < 4; n++) {
-    fill(chosenColors[n]);
+  // Draw the rectangles, using the numberOfRectangles we generated earlier
+  for (let n = 0; n < numberOfRectangles; n++) {
+    fill(randomColors[n]);
     rect(
       margin + rectWidth * n + gap * n,
       height * 0.1,
@@ -65,14 +86,19 @@ function draw() {
   }
 
   // Draw text
-  let textColor = backgroundColor === "#000000" ? "#ffffff" : "#000000";
+  let textColor = backgroundColor === "white" ? "black" : "white";
   fill(textColor);
   textFont(plexMono);
   textSize(width * 0.02);
   textAlign(CENTER, CENTER);
+
+  // Reference the minting wallet address with hl.tx.mintingWalletAddress
   text(`Minted by ${hl.tx.walletAddress}`, 0, 0, width, height * 0.1);
+
+  // Reference the token ID with hl.tx.tokenId
   text(`Token #${hl.tx.tokenId}`, 0, height * 0.9, width, height * 0.1);
 
+  // Now that we're done drawing all the rectangles, trigger the preview image
   hl.token.capturePreview();
 }
 
