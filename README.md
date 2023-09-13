@@ -33,7 +33,7 @@ textures/
 
 Once you're ready to test or deploy your project on Highlight:
 
-- Create a .zip of your project files, ensuring that you select the group of files to zip, _not_ the folder itself:
+- Create a .zip of your project files, ensuring that you select the group of files to zip, _not_ the folder itself:\
   ![Screenshot of a set of files being zipped, as opposed to a directory being zipped.](/assets/img/zip-screenshot.png)
 - Your .zip should not be larger than 2GB. All project assets are stored on Arweave, a decentralized and permanent storage network
 - Go to https://highlight.xyz/tools/ and connect your wallet
