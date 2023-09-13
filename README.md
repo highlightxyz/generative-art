@@ -48,7 +48,7 @@ Every project must include the hl-gen.js script, which gives you access to block
 
 **[Download hl-gen.js &darr;](./hl-gen.js)**
 
-In your `index.html` file, reference the hl-gen.js script before any aof your drawing code:
+In your `index.html` file, reference the hl-gen.js script before any of your drawing code:
 
 ```javascript
 <head>
@@ -357,7 +357,7 @@ For example, if you're running your project locally at `http://localhost:3000/`,
 
 ## Setting token metadata using hl-gen.js
 
-Aside from accessing data, hl-gen.js gives you the ability to set metadata for your tokens by calling the provided methods. This metadata appears both on Highlight and and third-party platforms like OpenSea when displaying your collections and tokens from it. You can set the name, description, or traits of a token. All of these methoda are available on the global `hl.token` object. The `hl.setName()` and `hl.setDescription()` methods take a String as their only argument, while setTraits takes an object with the keys representing the trait names and the values representing the trait values.
+Aside from accessing data, hl-gen.js gives you the ability to set metadata for your tokens by calling the provided methods. This metadata appears both on Highlight and and third-party platforms like OpenSea when displaying your collections and tokens from it. You can set the name, description, or traits of a token. All of these methoda are available on the global `hl.token` object. The `hl.token.setName()` and `hl.token.setDescription()` methods take a String as their only argument, while setTraits takes an object with the keys representing the trait names and the values representing the trait values.
 
 **setTraits**
 
