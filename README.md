@@ -40,7 +40,7 @@ Once you're ready to test or deploy your project on Highlight:
 - Click **Create a collection** and choose **Generative series**
 - Upload the .zip file of your code-based generative project and continue with testing
 
-**[Download an example project &darr;](./raw/examples/basic-p5-example/EXAMPLE_UPLOAD_ME.zip)**
+**[Download an example project &darr;](https://github.com/highlightxyz/generative-art/raw/main/examples/basic-p5-example/EXAMPLE_UPLOAD_ME.zip)**
 
 ## Adding hl-gen.js to your project
 
