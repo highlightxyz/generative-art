@@ -7,15 +7,18 @@ Generative art collections are Highlight are sets of NFTs that are rendered by a
 - [Methods to set metadata for the tokens in a collection](#setting-token-metadata-using-hl-genjs)
 - [A method to trigger the capture of a preview image for a token](#capturing-preview-images-programmatically)
 
-Technically speaking, generative art collections on Highlight are simply packaged web pages. To create a generative art collection on Highlight:
+At their core, generative art collections on Highlight are simply packaged web pages that use data inputs to render visual outputs. Projects should contain the following:
 
-- Go to https://highlight.xyz/tools/
+- **index.html**: This file renders your tokens.
+- **hl-gen.js**: This file gives you access to data from the blockchain, helps you generate deterministic randomness in your tokens, and provides functions to store attributes and capture preview images
+- Any libraries required to render your tokens, like p5.js, three.js, tone.js, etc.
+- Any other files required to render your tokens, including images, fonts, video files, etc.
+
+Once you're ready to test or deploy your project on Highlight:
+
+- Go to https://highlight.xyz/tools/ and connect your wallet
 - Click **Create a collection** and choose **Generative series**
-- Upload a .zip file of your code-based generative project (make sure to zip all the files together, not the folder containing them). The .zip should include:
-  - **index.html**: This file renders your tokens.
-  - **hl-gen.js**: This file gives you access to data from the blockchain, helps you generate deterministic randomness in your tokens, and provides functions to store attributes and capture preview images
-  - Any libraries required to render your tokens, like p5.js, three.js, tone.js, etc.
-  - Any other files required to render your tokens, including images, fonts, video files, etc.
+- Upload a .zip file of your code-based generative project (make sure to zip all the files together, not the folder containing them)
 
 **[Download an example project &darr;](examples/basic-p5-example.zip)**
 
