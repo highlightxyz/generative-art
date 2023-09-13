@@ -9,8 +9,8 @@ Generative art collections are Highlight are sets of NFTs that are rendered by a
 
 At their core, generative art collections on Highlight are simply packaged web pages that use data inputs to render visual outputs. Projects should contain the following:
 
-- **index.html**: This file displays your tokens (required)
-- **hl-gen.js**: This file gives you access to data from the blockchain, helps you generate deterministic randomness in your tokens, and provides functions to store attributes and capture preview images (required)
+- **index.html** _(required)_: This file displays your tokens
+- **hl-gen.js** _(required)_: This file gives you access to data from the blockchain, helps you generate deterministic randomness in your tokens, and provides methods to set metadata and capture preview images
 - Any libraries required to render your tokens, like p5.js, three.js, tone.js, etc.
 - Any other files required to render your tokens, including images, fonts, video files, etc.
 
