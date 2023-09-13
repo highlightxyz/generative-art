@@ -2,10 +2,10 @@
 
 Generative art collections are Highlight are sets of NFTs that are rendered by an artist's code at the time they're minted. The `hl-gen.js` script powers these collections by giving artists access to:
 
-- [Methods for generating deterministic randomness in your art](#generating-deterministic-randomness-using-hl-gen.js)
-- Numerous pieces of data from the blockchain
-- Methods to set metadata for the tokens in a collection
-- A method to trigger the capture of a preview image for a token
+- [Methods for generating deterministic randomness in your art](#generating-deterministic-randomness-using-hl-genjs)
+- [Numerous pieces of data from the blockchain](data-provided-by-hl-genjs)
+- [Methods to set metadata for the tokens in a collection](setting-token-metadata-using-hl-genjs)
+- [A method to trigger the capture of a preview image for a token](capturing-preview-images-programmatically)
 
 Technically speaking, generative art collections on Highlight are simply packaged web pages. To create a generative art collection on Highlight:
 
