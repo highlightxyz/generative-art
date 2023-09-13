@@ -16,13 +16,14 @@ At their core, generative art collections on Highlight are simply packaged web p
 
 Once you're ready to test or deploy your project on Highlight:
 
+- Create a .zip of your project files, ensuring that you select the group of files to zip, _not_ the folder itself:
+  ![Screenshot of a set of files being zipped, as opposed to a directory being zipped.](/assets/img/zip-screenshot.png)
+- Your .zip should not be larger than 2GB. All project assets are stored on Arweave, a decentralized and permanent storage network
 - Go to https://highlight.xyz/tools/ and connect your wallet
 - Click **Create a collection** and choose **Generative series**
-- Upload a .zip file of your code-based generative project (make sure to zip all the files together, not the folder containing them)
+- Upload the .zip file of your code-based generative project
 
 **[Download an example project &darr;](examples/basic-p5-example.zip)**
-
-Your .zip should not be larger than 2GB. All project assets are stored on Arweave, a decentralized and permanent storage network. A simple project that uses the p5.js library might look like this:
 
 ```
 index.html
@@ -31,10 +32,6 @@ lib/
   ↳ p5.min.js
   ↳ hl-gen.js
 ```
-
-When zipping your project, ensure that you select a group of files to zip, _not_ the folder itself:
-
-![Screenshot of a set of files being zipped, as opposed to a directory being zipped.](/assets/img/zip-screenshot.png)
 
 ## Adding hl-gen.js to your project
 
