@@ -34,13 +34,13 @@ textures/
 Once you're ready to test or deploy your project on Highlight:
 
 - Create a .zip of your project files, ensuring that you select the group of files to zip, _not_ the folder itself:
-  ![Screenshot of a set of files being zipped, as opposed to a directory being zipped.](/assets/img/zip-screenshot.png)
+  ![Screenshot of a set of files being zipped, as opposed to a directory being zipped.](./assets/img/zip-screenshot.png)
 - Your .zip should not be larger than 2GB. All project assets are stored on Arweave, a decentralized and permanent storage network
 - Go to https://highlight.xyz/tools/ and connect your wallet
 - Click **Create a collection** and choose **Generative series**
 - Upload the .zip file of your code-based generative project and continue with testing
 
-**[Download an example project &darr;](./examples/basic-p5-example/EXAMPLE_UPLOAD_ME.zip)**
+**[Download an example project &darr;](./raw./examples/basic-p5-example/EXAMPLE_UPLOAD_ME.zip)**
 
 ## Adding hl-gen.js to your project
 
