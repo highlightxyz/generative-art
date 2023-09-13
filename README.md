@@ -21,12 +21,12 @@ For example, a simple project using p5.js might look like this:
 ```
 index.html
 sketch.js
-lib/
+🗁 lib/
   ↳ p5.min.js
   ↳ hl-gen.js
-fonts/
+🗁 fonts/
   ↳ IBMPlexMono-Regular.ttf
-textures/
+🗁 textures/
   ↳ texture-1.png
   ↳ texture-2.png
 ```
