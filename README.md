@@ -33,7 +33,7 @@ textures/
 
 Once you're ready to test or deploy your project on Highlight:
 
-- Create a .zip of your project files, ensuring that you select the group of files to zip, _not_ the folder itself:\
+- Create a .zip of your project files, ensuring that you select the group of files to zip, _not_ the folder itself:
   ![Screenshot of a set of files being zipped, as opposed to a directory being zipped.](/assets/img/zip-screenshot.png)
 - Your .zip should not be larger than 2GB. All project assets are stored on Arweave, a decentralized and permanent storage network
 - Go to https://highlight.xyz/tools/ and connect your wallet
@@ -44,7 +44,9 @@ Once you're ready to test or deploy your project on Highlight:
 
 ## Adding hl-gen.js to your project
 
-Every project must include the hl-gen.js script, which gives you access to blockchain data and makes it possible to render individual tokens that have been minted. [Download hl-gen.js](./hl-gen.js) and include it in your project.
+Every project must include the hl-gen.js script, which gives you access to blockchain data and makes it possible to render individual tokens that have been minted.
+
+**[Download hl-gen.js &darr;](./hl-gen.js)**
 
 In your `index.html` file, reference the hl-gen.js script before any aof your drawing code:
 
@@ -74,13 +76,13 @@ Calling `hl.random()` with 0 arguments returns a random number between 0 (inclus
 hl.random(); // 0.5265596949029714, 0.08938326966017485, 0.6286451765336096
 ```
 
-Calling `hl.random()` with one argument, `max`, returns a random number between 0 (inclusive) and `max` (exclusive).
+Calling `hl.random(max)` with one argument, `max`, returns a random number between 0 (inclusive) and `max` (exclusive).
 
 ```javascript
 hl.random(10); // 6.383272618986666, 1.6330017894506454, 0.20435922779142857
 ```
 
-Calling `hl.random()` with two arguments, `min` and `max`, returns a random number between `min` (inclusive) and `max` (exclusive).
+Calling `hl.random(min, max)` with two arguments, `min` and `max`, returns a random number between `min` (inclusive) and `max` (exclusive).
 
 ```javascript
 hl.random(100, 200); // 187.3693763744086, 110.8005760004744, 155.7921847794205
@@ -96,19 +98,19 @@ hl.randomInt(min, max) => Number
 
 You can call `hl.randomInt()` with 0, 1, or 2 arguments.
 
-Calling `hl.randomInt()` with 0 arguments returns a random integer between 0 (inclusive) and 100 (inclusive).
+Calling `hl.randomInt()` with 0 arguments returns a random integer between 0 (inclusive) and 100 (inclusive). Note that 100 is chosen as a sensible default, in general you should provide a maximum value.
 
 ```javascript
 hl.randomInt(); // 28, 63, 39
 ```
 
-Calling `hl.randomInt()` with one argument, `max`, returns a random integer between 0 (inclusive) and `max` (inclusive).
+Calling `hl.randomInt(max)` with one argument, `max`, returns a random integer between 0 (inclusive) and `max` (inclusive).
 
 ```javascript
 hl.randomInt(10); // 4, 10, 2
 ```
 
-Calling `hl.randomInt()` with two arguments, `min` and `max`, returns a integer number between `min` (inclusive) and `max` (inclusive).
+Calling `hl.randomInt(min, max)` with two arguments, `min` and `max`, returns a integer number between `min` (inclusive) and `max` (inclusive).
 
 ```javascript
 hl.random(100, 200); // 162, 117, 181
@@ -122,7 +124,7 @@ hl.random(100, 200); // 162, 117, 181
 hl.randomBool(percent) => Boolean
 ```
 
-Calling `hl.randomBool()` returns a boolean value with `percent` chance of being `true`. Passing `0` will always result in a return value of `false` while passing 1 will always result in a return value of `true`.
+Calling `hl.randomBool(percent)` returns a boolean value with `percent` chance of being `true`. Passing `0` will always result in a return value of `false` while passing 1 will always result in a return value of `true`.
 
 For example, calling `hl.randomBool(0.25)` will have a 25% chance of returning `true` and a 75% chance of returning `false`.
 
@@ -161,7 +163,7 @@ hl.randomElement([
 The hl-gen.js script also gives you direct access to a number of pieces of data from the blockchain, including the transaction hash, block hash, minting wallet address, token ID, edition size, and more. All of these pieces of data are available on the `hl.tx` object.
 
 > [!NOTE]
-> Note that all of the values discussed below are returned as strings.
+> Note that all of the values discussed below are returned as Strings.
 
 ---
 
@@ -310,6 +312,46 @@ hl.tx.gasUsed: String
 ```
 
 The total amount of gas used for the mint transaction. Example value: `51`.
+
+---
+
+**Testing values**
+
+When running your script locally or testing on highlight.xyz, hl-gen.js will generate sensible, random test values for each of the items listed above. The below chart outlines the range of values you can expect.
+
+| Value                 | Link                                                     |
+| --------------------- | -------------------------------------------------------- |
+| hl.tx.hash            | A randomly generated 64-character hex prefixed with `0x` |
+| hl.tx.timestamp       | The current Unix timestamp, e.g. `1694624015`            |
+| hl.tx.walletAddress   | A randomly generated 40-character hex prefixed with `0x` |
+| hl.tx.tokenId         | A random whole number from 1–100                         |
+| hl.tx.editionSize     | A random whole number from 1–100                         |
+| hl.tx.mintSize        | A random whole number from 1–19                          |
+| hl.tx.mintIteration   | A random whole number from 1–mintSize                    |
+| hl.tx.contractAddress | A randomly generated 40-character hex prefixed with `0x` |
+| hl.tx.blockNumber     | A random whole number from 1–1000000                     |
+| hl.tx.chainId         | A random selection from [1, 5, 137, 80001]               |
+| hl.tx.gasPrice        | A random whole number from 10–200                        |
+| hl.tx.gasUed          | A random whole number from 10–100                        |
+
+While testing, you may want to fix certain values and not let hl-gen.js randomly generate them. For example, you might want to fix `hl.tx.hash` and `hl.tx.tokenId` to ensure that all of the random functions produce the same values when the page is refreshed. To do this, can use query parameters to specify the values you would like to fix. The following table outlines the query parameter keys to use for the various values:
+
+| Value                 | Query parameter key |
+| --------------------- | ------------------- |
+| hl.tx.hash            | h                   |
+| hl.tx.timestamp       | t                   |
+| hl.tx.walletAddress   | wa                  |
+| hl.tx.tokenId         | tid                 |
+| hl.tx.editionSize     | s                   |
+| hl.tx.mintSize        | ms                  |
+| hl.tx.mintIteration   | mi                  |
+| hl.tx.contractAddress | a                   |
+| hl.tx.blockNumber     | bn                  |
+| hl.tx.chainId         | c                   |
+| hl.tx.gasPrice        | gp                  |
+| hl.tx.gasUed          | gu                  |
+
+For example, if you're running your project locally at `http://localhost:3000/`, you can load `http://localhost:3000/?tid=1&h=0x0272d0631fe18566e2a4221db0eb9807b8921713ea37ccd97866e079771e8efa` to fix the tokenId and hash.
 
 ---
 
