@@ -299,9 +299,9 @@ The price per unit of gas (in gwei) at the time of mint. The value will be a who
 | Ethereum   | https://etherscan.io/gastracker     |
 | Base       | https://cointool.app/gasPrice/base  |
 | Arbitrum   | https://cointool.app/gasPrice/arb   |
-| Optimism   | -                                   |
+| Optimism   | https://www.optimism.io/gas-tracker |
 | Polygon    | https://cointool.app/gasPrice/matic |
-| Zora       | -                                   |
+| Zora       | https://explorer.zora.energy/       |
 
 ---
 
