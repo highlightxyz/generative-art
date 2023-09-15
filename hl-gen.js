@@ -41,7 +41,7 @@ const hl = (function () {
     };
   }
 
-  function sfc32New(a, b, c, d) {
+  function sfc32(a, b, c, d) {
     return function () {
       a |= 0;
       b |= 0;
@@ -61,19 +61,19 @@ const hl = (function () {
   const chainId =
     searchParams.get("c") ||
     [1, 5, 137, 80001][Math.floor(Math.random() * 4)].toString();
+  const editionSize =
+        searchParams.get("s") || Math.floor(100 * Math.random()).toString();
   const mintSize =
-    searchParams.get("ms") || Math.floor(19 * Math.random() + 1).toString();
+    searchParams.get("ms") || Math.floor(Number(editionSize) * Math.random() + 1).toString();
   const mintIteration =
     searchParams.get("mi") ||
     Math.floor((Number(mintSize) - 1) * Math.random() + 1).toString();
-  const editionSize =
-    searchParams.get("s") || Math.floor(100 * Math.random()).toString();
   const hash = searchParams.get("h") || generateRandomHash();
   const blockHash = searchParams.get("bh") || generateRandomHash();
   const blockNumber =
     searchParams.get("bn") || Math.floor(1000000 * Math.random()).toString();
   const tokenId =
-    searchParams.get("tid") || Math.floor(100 * Math.random()).toString();
+    searchParams.get("tid") || Math.floor(Number(editionSize) * Math.random()).toString();
   const walletAddress = searchParams.get("wa") || generateRandomAddress();
   const timestamp =
     searchParams.get("t") || Math.floor(Date.now() / 1000).toString();
@@ -110,7 +110,7 @@ const hl = (function () {
         max = args[1];
         min = args[0];
       }
-      const rand = sfc32New(seed(), seed(), seed(), seed())();
+      const rand = sfc32(seed(), seed(), seed(), seed())();
       return min + (max - min) * rand;
     },
     randomInt: (...args) => {
@@ -126,7 +126,7 @@ const hl = (function () {
       return array[hl.randomInt(0, array.length - 1)];
     },
     token: {
-      id: searchParams.get("tid"),
+      id: tokenId,
       traits: {},
       name: "",
       description: "",
