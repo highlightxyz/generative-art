@@ -359,7 +359,7 @@ const hl = (function () {
       scriptInfo: () => {
         return {
           name: 'Highlight Generative Art Script',
-          version: '0.1.2',
+          version: '1.0.0',
           framework: 'js',
         };
       },
