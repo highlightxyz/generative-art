@@ -1,6 +1,6 @@
 # Creating generative art on Highlight
 
-Generative art collections are Highlight are sets of NFTs that are rendered by an artist's code at the time they're minted. The `hl-gen.js` script powers these collections by giving artists access to:
+Generative art collections on Highlight are sets of NFTs that are rendered by an artist's code at the time they're minted. The `hl-gen.js` script powers these collections by giving artists access to:
 
 - [Methods for generating deterministic randomness in your art](#generating-deterministic-randomness-using-hl-genjs)
 - [Numerous pieces of data from the blockchain](#data-provided-by-hl-genjs)
@@ -183,7 +183,7 @@ The transaction hash of the blockchain transaction. If you choose to use presele
 hl.tx.timestamp: String
 ```
 
-The timestamp of the blockchain tranaction. Note that this is a Unix timestamp in seconds (not milliseconds). Example value: `1694202763`.
+The timestamp of the blockchain transaction. Note that this is a Unix timestamp in seconds (not milliseconds). Example value: `1694202763`.
 
 ---
 
@@ -334,7 +334,7 @@ When running your script locally or testing on highlight.xyz, hl-gen.js will gen
 | hl.tx.gasPrice        | A random whole number from 10–200                        |
 | hl.tx.gasUed          | A random whole number from 10–100                        |
 
-While testing, you may want to fix certain values and not let hl-gen.js randomly generate them. For example, you might want to fix `hl.tx.hash` and `hl.tx.tokenId` to ensure that all of the random functions produce the same values when the page is refreshed. To do this, can use query parameters to specify the values you would like to fix. The following table outlines the query parameter keys to use for the various values:
+While testing, you may want to fix certain values and not let hl-gen.js randomly generate them. For example, you might want to fix `hl.tx.hash` and `hl.tx.tokenId` to ensure that all of the random functions produce the same values when the page is refreshed. To do this, you can use query parameters to specify the values you would like to fix. The following table outlines the query parameter keys to use for the various values:
 
 | Value                 | Query parameter key |
 | --------------------- | ------------------- |
@@ -357,7 +357,7 @@ For example, if you're running your project locally at `http://localhost:3000/`,
 
 ## Setting token metadata using hl-gen.js
 
-Aside from accessing data, hl-gen.js gives you the ability to set metadata for your tokens by calling the provided methods. This metadata appears both on Highlight and and third-party platforms like OpenSea when displaying your collections and tokens from it. You can set the name, description, or traits of a token. All of these methoda are available on the global `hl.token` object. The `hl.token.setName()` and `hl.token.setDescription()` methods take a String as their only argument, while setTraits takes an object with the keys representing the trait names and the values representing the trait values.
+Aside from accessing data, hl-gen.js gives you the ability to set metadata for your tokens by calling the provided methods. This metadata appears both on Highlight and third-party platforms like OpenSea when displaying your collections and tokens. You can set the name, description, or traits of a token. All of these methoda are available on the global `hl.token` object. The `hl.token.setName()` and `hl.token.setDescription()` methods take a String as their only argument, while setTraits takes an object with the keys representing the trait names and the values representing the trait values.
 
 **setTraits**
 
@@ -365,7 +365,7 @@ Aside from accessing data, hl-gen.js gives you the ability to set metadata for y
 hl.token.setTraits(traits) => Void
 ```
 
-Sets the traits for the token, where `traits` is an object whose key-value pairs represent trait names and values. The values of the `traits` object will all be converted to Strings, so you should not use Arrays or Objects. You should call `hl.setTraits()` as soon as possible in your script, before drawing or preloading if possible. This ensures Highlight can calculate traits as quickly as possible when testing and revealing tokens.
+Sets the traits for the token, where `traits` is an object whose key-value pairs represent trait names and values. The values of the `traits` object will all be converted to Strings, so you should not use Arrays or Objects. You should call `hl.setTraits()` as soon as possible in your script before drawing or preloading if possible. This ensures Highlight can calculate traits as quickly as possible when testing and revealing tokens.
 
 In this example, we set 3 traits for a token, color, size, and speed:
 
@@ -385,7 +385,7 @@ hl.token.setTraits({
 hl.token.getTraits() => Object
 ```
 
-Returns an object whose key-value pairs represent the traits that have been set for this token.
+Returns an object whose key-value pairs represent the traits set for this token.
 
 ---
 
@@ -395,7 +395,7 @@ Returns an object whose key-value pairs represent the traits that have been set 
 hl.token.setName(name) => Void
 ```
 
-Sets the name for this particular token. Note that you are not required to set names for individual tokens. If you don't, token names will simply be the token ID preced by a "#" sign, e.g. "#1", "#74", "#492", etc.
+Sets the name for this particular token. Note that you are not required to set names for individual tokens. If you don't, token names will simply be the token ID preceded by a "#" sign, e.g. "#1", "#74", "#492", etc.
 
 ---
 
@@ -452,7 +452,7 @@ In this example, a single token might have the name “Small Red token” and th
 
 ## Capturing preview images programmatically
 
-Whenever one of your tokens is minted, Highlight automatically captures and assigns a preview image for that token. This preview image is shown when it is impractical to show a live view, including when a grid a grid of many tokens is shown.
+Whenever one of your tokens is minted, Highlight automatically captures and assigns a preview image for that token. This preview image is shown when it is impractical to show a live view, including when a grid of many tokens is shown.
 
 You can trigger this capture programmatically or by specifying a time delay in the Highlight UI. Triggering the capture programmatically allows you to control exactly when the preview image is captured as your code runs. The hl-gen.js script provides the `hl.token.capturePreview()` method to trigger the capture.
 
@@ -462,7 +462,7 @@ hl.token.capturePreview() => Void
 
 To capture your preview images programmatically, choose this option in the **Preview images** step of the collection creation process and call the provided `hl.token.capturePreview()` method in your code when you want to capture the preview image.
 
-Images are captured as .png by default, but if you your index.html page renders an SVG element, you may choose to capture your preview image as an .svg instead by selecting **Capture a specific element** under the **Preview image area** option in the **Preview images** step of the creation process in the Highlight UI.
+Images are captured as .png by default, but if your index.html page renders an SVG element, you may choose to capture your preview image as an .svg instead by selecting **Capture a specific element** under the **Preview image area** option in the **Preview images** step of the creation process in the Highlight UI.
 
 When capturing a preview image, we’ll run your code in the background while listening for `hl.token.capturePreview()` to be called. If you’re using this method, ensure it is called within a few minutes of your script starting.
 
@@ -480,7 +480,7 @@ draw() {
 }
 ```
 
-To determine your script is being run in order to capture a preview image, you can use the `hl.context.previewMode`. This will return `true` if a preview image is being captured and `false` if the script is being run in live view mode.
+To determine your script is being run in order to capture a preview image, you can use the `hl.context.previewMode`. This will return `true` if a preview image is captured and `false` if the script is run in live view mode.
 
 ## Example usage
 
@@ -536,4 +536,4 @@ function draw() {
 
 Generative projects created on Highlight are displayed by rendering your project’s index.html file inside an iframe. This means that your tokens may appear at different sizes at different times. In practice, this means using a fixed size canvas may cause rendering issues. You may either scale your token in order to appear the same at all sizes, or you may have it respond and display differently at different sizes—the choice is yours. In either case, your code should respond to the window resize event to ensure your token renders correctly if the browser is resized.
 
-In the preview images step, you’ll have the option to specify a resolution of the preview image. Note that the aspect ratio used here will be used to render your token on Highlight.
+In the preview images step, you’ll have the option to specify the resolution of the preview image. Note that the aspect ratio used here will be used to render your token on Highlight.
