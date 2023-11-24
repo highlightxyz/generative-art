@@ -332,7 +332,7 @@ When running your script locally or testing on highlight.xyz, hl-gen.js will gen
 | hl.tx.blockNumber     | A random whole number from 1–1000000                     |
 | hl.tx.chainId         | A random selection from [1, 5, 137, 80001]               |
 | hl.tx.gasPrice        | A random whole number from 10–200                        |
-| hl.tx.gasUed          | A random whole number from 10–100                        |
+| hl.tx.gasUsed         | A random whole number from 10–100                        |
 
 While testing, you may want to fix certain values and not let hl-gen.js randomly generate them. For example, you might want to fix `hl.tx.hash` and `hl.tx.tokenId` to ensure that all of the random functions produce the same values when the page is refreshed. To do this, you can use query parameters to specify the values you would like to fix. The following table outlines the query parameter keys to use for the various values:
 
@@ -349,7 +349,7 @@ While testing, you may want to fix certain values and not let hl-gen.js randomly
 | hl.tx.blockNumber     | bn                  |
 | hl.tx.chainId         | c                   |
 | hl.tx.gasPrice        | gp                  |
-| hl.tx.gasUed          | gu                  |
+| hl.tx.gasUsed         | gu                  |
 
 For example, if you're running your project locally at `http://localhost:3000/`, you can load `http://localhost:3000/?tid=1&h=0x0272d0631fe18566e2a4221db0eb9807b8921713ea37ccd97866e079771e8efa` to fix the tokenId and hash.
 
