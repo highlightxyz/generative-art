@@ -245,7 +245,7 @@ Ahhh yes. Welcome to the world of a million devices, with 10,000 different stand
 
 ## Using remote scripts / files
 
-Sometimes your artworks will not load / work. You might even see some `CORS errors` in your browser console. This is most likely due to the fact that your artwork is trying to load files from somewhere else, e.g. a `p5.js` library from a CND.
+Sometimes your artworks will not load / work. You might even see some `CORS errors` in your browser console. This is most likely due to the fact that your artwork is trying to load files from somewhere else, e.g. a `p5.js` library from a CDN.
 
 We highly recommend that you download and include all the scripts your artwork needs in the zip file itself. This way you avoid any version, network and availability issues. Just download the necessary files, put them in the same folder as `hl-gen.js` and include them in your html the same way.
 If for some reason you DO need access to some third party scripts, shoot us an [email](mailto:gm@highlight.xyz) and we will enable that feature for your artwork.
@@ -404,7 +404,7 @@ The `hl-gen.js` file should not be modified if you don’t know what you are doi
 
 That being said… we do encourage you to play around and explore. If you discover an easier way of doing something, or that there is something missing, we would absolutely love to hear about it. We win when you win <3
 
-## I want some data be the same over multiple mints in a batch
+## I want some data to be the same over multiple mints in a batch
 
 Let's say you want to build an artwork that represents a dice. OMG what a coincidence, that's exactly what our advanced example is about. How lucky you are! Maybe you should go play some dice for real!
 
