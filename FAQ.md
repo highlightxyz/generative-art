@@ -2,9 +2,11 @@
 
 In this document we gathered the most common questions and issues artists have encountered. We hope this will provide you with guidelines and solutions for the problems you might encounter on your gen art journey. It will continue to evolve as time goes on so if you encounter any new problems down the line, be sure to check me again!
 
-Before we begin, you should read the intro document linked here [README](README.md), as it covers some of the main concepts and might already explain things you are curious about.
+Before we begin, you should read the intro document linked here [README](./README.md), as it covers some of the main concepts and might already explain things you are curious about.
 
 This document should be read in conjunction with the `advanced-p5-dice-example` as it explains, in code, most of the questions asked here (and I also think it's pretty neat). Here we will try to figure out why things are the way they are so you, the artist, can feel empowered and confident in your solutions.
+
+**[Download advanced example project &darr;](https://github.com/highlightxyz/generative-art/raw/main/examples/advanced-p5-dice-example/ADVANCED-P5-EXAMPLE-UPLOAD-ME.zip)**
 
 ## Upload issues
 
@@ -12,17 +14,17 @@ You've done the work, the artwork looks amazing, you navigate to the `Upload ass
 
 ### Incorrect zip structure
 
-![Upload error message](assets/img/faq/incorrect-upload.png)
+![Upload error message](./assets/img/faq/incorrect-upload.png)
 
 You might have zipped the files incorrectly. In the image above we can see that the `index.html` file is in fact present, but the system says it's missing. What gives? Well if you look closely you will see that all the files are inside the `advanced-p5-dice-example` folder. This means that instead of zipping all the files, we zipped the folder containing the files. The correct way to create the `.zip` file is as follows:
 
 Selecting all the files -> right click -> Compress
 
-![How to zip files](assets/img/zip-screenshot.png)
+![How to zip files](./assets/img/zip-screenshot.png)
 
 ### Missing files
 
-![Upload missing files](assets/img/faq/incorrect-upload-missing.png)
+![Upload missing files](./assets/img/faq/incorrect-upload-missing.png)
 
 Sometimes you might get the above message. It could be that you forgot to include the `hl-gen.js` files, in which case... please do :P
 
@@ -222,7 +224,7 @@ You can use this information to do all kinds of things, such as above, where we 
 
 ## Previews don't look the same
 
-![Previews differ](assets/img/faq/preview-diff.png)
+![Previews differ](./assets/img/faq/preview-diff.png)
 
 Speaking of previews, sometimes the `Live view` and `Preview image` differ. There are multiple reasons that might happen, so let's go through some of them:
 
@@ -250,7 +252,7 @@ If for some reason you DO need access to some third party scripts, shoot us an [
 
 ## Loading indicator using p5.js
 
-![Custom loader](assets/img/faq/custom-loader.png)
+![Custom loader](./assets/img/faq/custom-loader.png)
 
 If your artwork takes a while to load, it’s a good idea to show a loading indicator. The default one that comes with `p5.js` gets the job done, but it's not very visually appealing, showing just a “Loading…” text on the screen.
 
@@ -282,6 +284,8 @@ For a more in-depth look, read the following documentation straight from the `p5
 https://github.com/processing/p5.js/wiki/p5.js-overview#loading-screen
 
 Also see the working example in `advanced-p5-dice-example`!
+
+**[Download advanced example project &darr;](https://github.com/highlightxyz/generative-art/raw/main/examples/advanced-p5-dice-example/ADVANCED-P5-EXAMPLE-UPLOAD-ME.zip)**
 
 ## Easier use of random with p5.js
 
@@ -406,7 +410,9 @@ Anyway, you would like to make sure that when a user mints EXACTLY 6 tokens, he/
 
 So that's why we created the `hl-utils.js` script that will enable such functionality (and more!). It exposes a way to create seeded random values (just like `hl-gen.js` does internally - in fact, it's the same code). Let's have a look on how we would go about doing this:
 
-First we download the [hl-utils.js](hl-utils.js) file and add it to our HTML:
+First we download the `hl-utils.js` file and add it to our HTML:
+
+**[Download hl-utils.js &darr;](./hl-utils.js)**
 
 ```html
 <!-- Code taken from `advanced-p5-dice-example` -->
@@ -650,9 +656,13 @@ Trying to do the above things before there is a need will make your code and dev
 
 Please check the `hl-gen.js` (and `hl-utils.js`) version you are using. If you are using the file from a previous project you did or an old example, know that the documentation might not reflect what your version of the file does. This includes breaking changes, bug fixes and improvements. It's always better to download the latest version straight from this github.
 
+**[Download hl-gen.js &darr;](./hl-gen.js)**
+
+**[Download hl-utils.js &darr;](./hl-utils.js)**
+
 ## Testnet deploys
 
-![Testnet](assets/img/faq/testnet.png)
+![Testnet](./assets/img/faq/testnet.png)
 
 Take the time and upload your artwork to testnets before deploying them to mainnets. The testnet deploys are cheap, fast and more importantly... they give you a chance to test your artwork in the wild. **Please please please** do this. It will save you time, money and stress (or don't, I'm just a document, I can't force you).
 
