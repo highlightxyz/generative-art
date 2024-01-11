@@ -362,13 +362,13 @@ daysSinceNewYearWhenMinted = Math.floor(timeDifferenceFromMint / millisecondsInA
 
 The key here is `const startDate = new Date(1704067200000);` That number (1704067200000) is the amount of seconds from `Monday, January 1, 2024 00:00:00`.
 
-A quick note here. You might be thinking right now: "Hey, but this means its new year somewhere, but for me this could be 6 hours late (or early)". Yes you are correct. It depends on what you value more, local or global time. If for example you create an artwork and you want this artwork to change its background color each day after the mint went live, you care about the global time. The mint went live at exactly that second and 60 _ 60 _ 24 seconds later, 24 hours have passed. No matter what the local time was.
+A quick note here. You might be thinking right now: "Hey, but this means its new year somewhere, but for me this could be 6 hours late (or early)". Yes you are correct. It depends on what you value more, local or global time. If for example you create an artwork and you want this artwork to change its background color each day after the mint went live, you care about the global time. The mint went live at exactly that second and `60 * 60 * 24` seconds later, `24` hours have passed. No matter what the local time was.
 
 Unless you want your artwork to look different depending on the timezone you are in (which might be a fun idea!) you do not want to use relative time.
 
 ## How to check different tx params when developing
 
-While developing you want to check all the possible situations your artwork might find itself in. What happens if there was a batch mint, what happens if the user minted over 100 tokens, what happens if the gas price was high etc. This of course depends on which of these variables you depend on, but you get the idea.
+While developing you want to check all the possible situations your artwork might find itself in. What happens if there was a batch mint, what happens if the user minted over 100 tokens, what happens if the gas price was high etc. This of course depends on which of these variables you rely on, but you get the idea.
 
 The simplest way is to just set the `URL` params, just like it's described here: [README](README.md) (Testing values section). But that might be too tedious and not very flexible. In the near future we will provide better tooling (and build processes) that will alleviate that pain, but in the meantime you can directly edit code in `hl-gen.js` file:
 
@@ -398,7 +398,9 @@ const isCurated = searchParams.get('ic') || '0';
 const seed = isCurated === '1' ? xmur3(hash) : xmur3(hash + tokenId);
 ```
 
-**BUT BE SURE TO REVERT CHANGES BEFORE UPLOADING TO MAINNET**. The `hl-gen.js` file should not be modified if you don’t know what you are doing. If you want to modify it anyway, ask someone from the team to double check it will do what you intended.
+**BUT BE SURE TO REVERT CHANGES BEFORE UPLOADING TO MAINNET**.
+
+The `hl-gen.js` file should not be modified if you don’t know what you are doing. If you want to modify it anyway, ask someone from the team to double check it will do what you intended.
 
 That being said… we do encourage you to play around and explore. If you discover an easier way of doing something, or that there is something missing, we would absolutely love to hear about it. We win when you win <3
 
@@ -406,7 +408,7 @@ That being said… we do encourage you to play around and explore. If you discov
 
 Let's say you want to build an artwork that represents a dice. OMG what a coincidence, that's exactly what our advanced example is about. How lucky you are! Maybe you should go play some dice for real!
 
-Anyway, you would like to make sure that when a user mints EXACTLY 6 tokens, he/she gets one of each dice and that one of them is randomly chosen to be rare. To achieve this, you need to get some random value that is the same for all 6 mints. As is - `hl-gen.js` does not provide this functionality, since the randomness is seeded by the `transaction hash` + `token id`, which means it's different for each token in a batch.
+Anyway, you would like to make sure that when a user mints `EXACTLY 6` tokens, he/she gets one of each dice and that one of them is randomly chosen to be rare. To achieve this, you need to get some random value that is the same for all 6 mints. As is - `hl-gen.js` does not provide this functionality, since the randomness is seeded by the `transaction hash` + `token id`, which means it's different for each token in a batch.
 
 So that's why we created the `hl-utils.js` script that will enable such functionality (and more!). It exposes a way to create seeded random values (just like `hl-gen.js` does internally - in fact, it's the same code). Let's have a look on how we would go about doing this:
 
@@ -470,7 +472,7 @@ function prepareToken() {
 
 Let's break it down.
 
-First we check if the `hl.tx.mintSize` equals `"6"` (it's a string, you can cast it to a number if you want). This means the user minted EXACTLY 6 tokens. Because of that we need to know what the first tokens dice value will be.
+First we check if the `hl.tx.mintSize` equals `"6"` (it's a string, you can cast it to a number if you want). This means the user minted `EXACTLY 6` tokens. Because of that we need to know what the first tokens dice value will be.
 
 ```javascript
 // What was the first dice value in this batch?
@@ -558,7 +560,7 @@ Note that in the second example the order **MATTERS!** Changing the order of `r1
 
 ## Using randomness
 
-The nature of random is… well… random. That’s super cool as it enables us to make things that feel organic without us meticulously tweaking every detail. That being said, in our case we want to make our randomness reproducible! Every time someone opens our artwork, we would like to show the same one (except in rare cases where randomness is part of the artwork but I digress). From here on when I say `artwork reload`` I mean opening the artwork again from scratch - aka reloading the page.
+The nature of random is… well… random. That’s super cool as it enables us to make things that feel organic without us meticulously tweaking every detail. That being said, in our case we want to make our randomness reproducible! Every time someone opens our artwork, we would like to show the same one (except in rare cases where randomness is part of the artwork but I digress). From here on when I say `artwork reload` I mean opening the artwork again from scratch - aka reloading the page.
 
 In `hl.gen` random values are seeded based on the `transaction hash` and the `token id` combined (except for curated artworks where the hashes are pre-defined). This means all random operations will produce the same result every time the artwork is reloaded.
 
@@ -609,7 +611,7 @@ function draw() {
   fill(circleColor);
 
   if (frameCount % 60 === 0) {
-    // Every second
+    // Every "second"
     backgroundColor = hl.randomElement([
       'red',
       'orange',
@@ -621,7 +623,7 @@ function draw() {
     ]);
   }
   if (frameCount % 30 === 0) {
-    // Every half second
+    // Every "half second"
     circleColor = hl.randomElement([
       'red',
       'orange',
@@ -649,7 +651,8 @@ Here are a few guidelines you should follow:
 2. Filters are usually very expensive. Things like blur need to go over every pixel multiple times per frame. The bigger the screen resolution the bigger the cost.
 3. Use shaders where you can (for effects that need a lot of calculation). They are a bit limited but extremely fast.
 
-A final note: **DO NOT OPTIMIZE IF THERE IS NO PERFORMANCE ISSUE**.
+**DO NOT OPTIMIZE IF THERE IS NO PERFORMANCE ISSUE**.
+
 Trying to do the above things before there is a need will make your code and development process harder.
 
 ## File versions
@@ -664,6 +667,6 @@ Please check the `hl-gen.js` (and `hl-utils.js`) version you are using. If you a
 
 ![Testnet](./assets/img/faq/testnet.png)
 
-Take the time and upload your artwork to testnets before deploying them to mainnets. The testnet deploys are cheap, fast and more importantly... they give you a chance to test your artwork in the wild. **Please please please** do this. It will save you time, money and stress (or don't, I'm just a document, I can't force you).
+Take the time and upload your artwork to testnets before deploying them to mainnets. The testnet deploys are cheap (free), fast and more importantly... they give you a chance to test your artwork in the wild. **Please please please** do this (or don't, I'm just a document, I can't force you). It will save you time, money and stress.
 
 This can be done on the `Series details` step, where you can select the `Blockchain` and the `Network` to use. Do it.
