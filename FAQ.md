@@ -8,6 +8,36 @@ This document should be read in conjunction with the `advanced-p5-dice-example` 
 
 **[Download advanced example project &darr;](https://github.com/highlightxyz/generative-art/raw/main/examples/advanced-p5-dice-example/ADVANCED-P5-EXAMPLE-UPLOAD-ME.zip)**
 
+## Table of Contents
+
+Quickly jump to any question or issue you might have:
+
+- [Upload issues](#upload-issues)
+- [Incorrect zip structure](#incorrect-zip-structure)
+- [Missing files](#missing-files)
+- [Responsive artwork](#responsive-artwork)
+- [Using relative units](#using-relative-units)
+- [Scaling the canvas](#scaling-the-canvas)
+- [Incorrect metadata](#incorrect-metadata)
+- [Traits don't get set](#traits-dont-get-set)
+- [How do I make my artwork preview look different from the actual artwork?](#how-do-i-make-my-artwork-preview-look-different-from-the-actual-artwork)
+- [Previews don't look the same](#previews-dont-look-the-same)
+- [The artwork looks different on different devices](#the-artwork-looks-different-on-different-devices)
+- [Using remote scripts / files](#using-remote-scripts--files)
+- [Loading indicator using p5.js](#loading-indicator-using-p5js)
+- [Easier use of random with p5.js](#easier-use-of-random-with-p5js)
+- [Time Zones](#time-zones)
+- [How to check different tx params when developing](#how-to-check-different-tx-params-when-developing)
+- [I want some data to be the same over multiple mints in a batch](#i-want-some-data-to-be-the-same-over-multiple-mints-in-a-batch)
+- [Using randomness](#using-randomness)
+- [Performance](#performance)
+- [File versions](#file-versions)
+- [!!! Testnet deploys !!!](#testnet-deploys)
+
+Feb 05, 2024
+
+- ["Test script" step in the generative series creation flow is not working](#test-script-step-in-the-generative-series-creation-flow-is-not-working)
+
 ## Upload issues
 
 You've done the work, the artwork looks amazing, you navigate to the `Upload assets` page, drag in your `.zip` file and... uh-oh.... there is an error! Let's see what might have caused it.
@@ -670,3 +700,33 @@ Please check the `hl-gen.js` (and `hl-utils.js`) version you are using. If you a
 Take the time and upload your artwork to testnets before deploying them to mainnets. The testnet deploys are cheap (free), fast and more importantly... they give you a chance to test your artwork in the wild. **Please please please** do this (or don't, I'm just a document, I can't force you). It will save you time, money and stress.
 
 This can be done on the `Series details` step, where you can select the `Blockchain` and the `Network` to use. Do it.
+
+## "Test script" step in the generative series creation flow is not working
+
+Sometimes you upload your zip file and the test script step fails to render. This could be because there is an error in your script (but if it works locally, that is unlikely). The more likely reason is that you are using some assets in your script (like images, videos, sounds etc.) and the server throws a 403 error because it can't access them.
+
+Make sure to include all the assets your artwork needs in the zip file. This includes all the scripts, fonts, images, videos, sounds etc. If you are using remote scripts, download them (if you can) and include them in the zip file. This will ensure that the server can access them and that your artwork will work as intended.
+
+The next step is to make sure you are importing them correctly. If you are using `p5.js` for example, you would do something like this:
+
+```javascript
+// Code taken from `basic-p5-example`
+
+function preload() {
+  plexMono = loadFont('fonts/IBMPlexMono-Regular.ttf');
+  // or alternatively
+  plexMono = loadFont('./fonts/IBMPlexMono-Regular.ttf');
+}
+```
+
+Notice the path used to load the font file. It does not include `/` as the first character. This is because the path is relative to the `index.html` file, meaning - Where is the font file located if we start searching from the location of the `index.html` file?
+
+If it did (include the `/` as the first character), that would tell the browser to look for the file in the root of the server. This is not what we want - we want to look for it in the folder where the `index.html` file is, no matter where that folder is hosted. This is why we use relative paths.
+
+### For a bit more intuition here are a few examples:
+
+**(use this)** `loadFont("fonts/IBMPlexMono-Regular.ttf")` or `loadFont("./fonts/IBMPlexMono-Regular.ttf")` - This would start in the same folder as the `index.html` file, then look for the `fonts` folder, then for the font file itself.
+
+**(no! we are not at the root of the server)** `loadFont("/fonts/IBMPlexMono-Regular.ttf")` - This would look at the `root` of the site's hosting, then find the `fonts` folder, then for the font file itself.
+
+**(also no! This is not how our folder structure looks)** `loadFont("../fonts/IBMPlexMono-Regular.ttf")` or `loadFont("./../fonts/IBMPlexMono-Regular.ttf")` - This would start in the same folder as the `index.html` file, then go "back" one folder into the `parent folder`, then look for the `fonts` folder there, then for the font file itself.
