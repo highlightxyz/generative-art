@@ -32,7 +32,7 @@ Quickly jump to any question or issue you might have:
 - [Using randomness](#using-randomness)
 - [Performance](#performance)
 - [File versions](#file-versions)
-- [!!! Testnet deploys !!!](#testnet-deploys)
+- [Deploying your collection on a testnet](#deploying-your-collection-on-a-testnet)
 
 Feb 05, 2024
 
