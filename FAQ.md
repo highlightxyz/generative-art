@@ -693,13 +693,32 @@ Please check the `hl-gen.js` (and `hl-utils.js`) version you are using. If you a
 
 **[Download hl-utils.js &darr;](./hl-utils.js)**
 
-## Testnet deploys
+## Deploying your collection on a testnet
 
-![Testnet](./assets/img/faq/testnet.png)
+Before you deploy a collection on Highlight, you should always first deploy the exact same collection to a testnet. Remember, deploying a collection to a blockchain is a permanent, irreversible step. If you make a mistake, and something is broken or doesn't look right, the broken collection will be available on the blockchain forever. There is no "delete" function. There is also no "edit" function. Once deployed, the collection is set in stone and immutable.
 
-Take the time and upload your artwork to testnets before deploying them to mainnets. The testnet deploys are cheap (free), fast and more importantly... they give you a chance to test your artwork in the wild. **Please please please** do this (or don't, I'm just a document, I can't force you). It will save you time, money and stress.
+Because the stakes are so high, it is common practice in the blockchain world to first deploy to a testnet. A testnet is a complete, fully functional copy of a blockchain that can be used just like the regular version (which is usually referred to as mainnet), but without having to worry about things going wrong. If you make a mistake on testnet nobody cares. You just try again, until things look and work as they should. Highlight provides a full replica of its minting and marketplace infrastructure on testnets for each supported blockchain, so you can deploy a collection, see how the minting page looks, mint a few iterations, see how they look, make sure thumbnails generate correctly, check how tokens will look when listed on the marketplace, etc. This is a critical quality control step that should never be skipped.
 
-This can be done on the `Series details` step, where you can select the `Blockchain` and the `Network` to use. Do it.
+Testnets have somewhat strange names, such as Goerli or Sepolia, and they tend to be retired and replaced every few years. For example, the once popular Ethereum testnets Rinkeby and Ropsten are both long retired, and as of this writing Goerli is on the way out while most active testing is happening now on Sepolia.
+
+On Highlight, to deploy a collection to testnet or to mainnet is virtually the same process. The only difference is you select "Testnet" instead of "Mainnet" when specifying the collection details. Highlight currently supports two testnets, Ethereum Sepolia and Base Sepolia. Either one is fine. We recommend you use whichever one you find it easier to get testnet Eth for (see next subsection).
+
+### Getting testnet Eth
+
+To do anything on a testnet, you will need to obtain some testnet Eth, both to pay for gas and to make some test mints. Testnet Eth is different from the normal Eth you hold in your regular wallet on Ethereum mainnet or Optimism or Base. Testnet Eth isn't worth anything and nobody sells it. This is both good and bad. It's good in the sense that you don't have to spend any funds to get testnet Eth. You can get it for free. The bad news is you may have to jump through a few hoops to get it.
+
+If you have a friend who does a lot of development on Ethereum they probably have some testnet Eth they can send you. But let's assume you don't. What do you do then? You need to go to a faucet. A faucet is a website that sends you testnet Eth for free.
+
+For any particular testnet on which you may want to mint (say, Ethereum Sepolia), there are various faucets to obtain testnet Eth, and you may have to google to find one that works for you. All faucets will generally impose some restriction to ensure you're not a bot trying to drain all their testnet Eth supply. (Even though it's not worth anything supply is still limited.) If you're planning to mint to a testnet that is part of the Superchain (such as Base Sepolia), you can use the Superchain faucet: https://app.optimism.io/faucet If you have a GitHub account, just log in with that, then enter your Eth address, select the chains you plan to use, and send testnet Eth to your wallets. This method provides you with 0.05 testnet Eth per day, which is plenty to deploy a contract and run a test mint.
+
+### Troubleshooting
+
+**The testnet is not an available option in your wallet.** Depending on the wallet software you are using (Metamask, Coinbase Wallet, etc.) and the specific testnet you want to connect to, you may or may not have that testnet available as an option to select. If the testnet is not available, you will have to manually enter the relevant information. For example, in Metamask, you have to choose "Add a network manually" and then you can enter the testnet information. You will have to provide the network name, the RPC URL, the Chain ID, and the currency symbol. Of these four pieces of information, the RPC URL and the Chain ID are the two most critical ones you have to look up and enter correctly.
+
+As an example, for Base Sepolia, a possible RPC URL is https://sepolia.base.org and the Chain ID is 84532. (The Chain ID is always the same for any particular network, but there can be multiple RPC URLs that you could use. For testing it's not that important which particular RPC URL you pick. Just pick one that seems reasonable.) The currency symbol is always ETH. The network name is the name your wallet will use to refer to the network, so you can set it to anything that is reasonable to you. For example, "Base Sepolia" or "Sepolia Base" would both work. You can find RPC URLs and Chain IDs for many different networks here: https://chainlist.org/
+
+**All testnet transactions fail with Trezor.** If you are using a Trezor hardware wallet and you have obtained testnet Eth and you have properly connected your wallet to the testnet it can still happen that transactions simply fail. You may see an error message stating "Forbidden Key Path". If this is the case you are running into an issue where the Trezor is trying to protect you from transacting on a non-standard network. To work around it, open Trezor Suite, go to Settings, Device, Security, and then Safety Checks. There will be two options, "Strict" (the default) and "Prompt". Change this to "Prompt". Now it will allow you to complete the testnet transaction after alerting you that you're using an unusual key path. This is fine when you're transacting on testnet. Be aware though that this setting will revert to Strict after a relatively short amount of time so the next time you want to mint to testnet you will likely have to change this setting again.
+
 
 ## "Test script" step in the generative series creation flow is not working
 
