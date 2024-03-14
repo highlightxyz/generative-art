@@ -1,3 +1,15 @@
+### Checkout our new tool: HIGHLIGHT STUDIO!
+
+Checkout our newest tool: **Highlight Studio**, the companion app designed to help you iterate and test your artwork quickly and reliably!
+Read more about it [here](HLSTUDIO.md), or check it out live at [https://studio.highlight.xyz/](https://studio.highlight.xyz/).
+
+### Useful links
+
+- [FAQ](FAQ.md) - Troubleshooting and frequently asked questions
+- [Highlight Studio](HLSTUDIO.md) - Test your generative art in the Highlight Studio - **NEW!**
+
+<br/><br/>
+
 # Creating generative art on Highlight
 
 Generative art collections on Highlight are sets of NFTs that are rendered by an artist's code at the time they're minted. The `hl-gen.js` script powers these collections by giving artists access to:
@@ -145,15 +157,7 @@ Calling `hl.randomElement()` and passing in an array returns a random element fr
 The array you pass in can have members all of the same type (`[3, 6, 2, 8]`) or of different types (`["red", 7, true]`).
 
 ```javascript
-hl.randomElement([
-  "red",
-  "orange",
-  "yellow",
-  "green",
-  "blue",
-  "indigo",
-  "violet",
-]); // "orange", "blue", "red"
+hl.randomElement(['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']); // "orange", "blue", "red"
 ```
 
 ---
@@ -371,9 +375,9 @@ In this example, we set 3 traits for a token, color, size, and speed:
 
 ```javascript
 hl.token.setTraits({
-  Color: "Blue",
-  Size: "Medium",
-  Speed: "Fast",
+  Color: 'Blue',
+  Size: 'Medium',
+  Speed: 'Fast',
 });
 ```
 
@@ -432,8 +436,8 @@ Returns the description of the token.
 For example, setting the name, description, and some traits for a token might look like this:
 
 ```javascript
-let color = hl.randomElement(["Red", "Green", "Blue"]);
-let size = hl.randomElement(["Small", "Medium", "Large"]);
+let color = hl.randomElement(['Red', 'Green', 'Blue']);
+let size = hl.randomElement(['Small', 'Medium', 'Large']);
 
 hl.token.setName(`${size} ${color} token`);
 
@@ -502,12 +506,12 @@ function draw() {
   translate(width / 2, height / 2);
 
   let size = hl.randomInt(400, 600);
-  let color = hl.randomElement(["red", "green", "blue"]);
+  let color = hl.randomElement(['red', 'green', 'blue']);
 
   noStroke();
   fill(color);
   ellipse(0, 0, size);
-  fill("white");
+  fill('white');
   textAlign(CENTER, CENTER);
   text(
     `${hl.tx.walletAddress}\n
@@ -519,9 +523,7 @@ function draw() {
 
   hl.token.setName(`My token #${hl.tx.tokenId}`);
 
-  hl.token.description(
-    `A token with token ID ${hl.tx.tokenId}. It is ${size} and ${color}.`
-  );
+  hl.token.description(`A token with token ID ${hl.tx.tokenId}. It is ${size} and ${color}.`);
 
   hl.token.setTraits({
     Size: size,
