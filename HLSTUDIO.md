@@ -129,6 +129,8 @@ The options include:
 - **Locked**: won’t change
 - **Random Between**: a random value between two values
 - **Sequential**: increase (or decrease if negative) by a certain amount each generation
+- **List**: Sequentially pick from a list of values
+- **Random List**: Randomly pick from a list of values
 
 With these options you can now program how certain values change over time. In the future there will be more customization options, such as randomly/sequentially picking from a list of provided values.
 Underneath the form there are generation options. Let's go through them.
