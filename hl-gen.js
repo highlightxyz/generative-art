@@ -83,8 +83,9 @@ const hl = (function () {
   const gasUsed =
     searchParams.get("gu") ||
     Math.floor(Math.random() * (100 - 10 + 1) + 10).toString();
-  const isCurated = searchParams.get("ic") || "0";
-  const seed = isCurated === "1" ? xmur3(hash) : xmur3(hash + tokenId);
+  const isCurated = (searchParams.get("ic") || "0") === "1";
+  const seed = isCurated ? xmur3(hash) : xmur3(hash + tokenId);
+  const customMintData = searchParams.get("cmd") || "0x";
 
   const hl = {
     tx: {
@@ -101,6 +102,7 @@ const hl = (function () {
       editionSize,
       gasPrice,
       gasUsed,
+      customMintData
     },
     random: (...args) => {
       let min = 0,
@@ -155,6 +157,7 @@ const hl = (function () {
     },
     context: {
       previewMode: searchParams.get("pr") === "1",
+      isCurated,
       scriptInfo: () => {
         return {
           name: "Highlight Generative Art Script",
