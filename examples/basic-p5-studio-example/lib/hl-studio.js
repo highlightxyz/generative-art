@@ -1,6 +1,6 @@
 /**
  * Highlight Generative Art Highlight Studio Script : V0
- * @version: 0.0.1
+ * @version: 0.0.2
  * @description The script that enables all the Highlight Studio features.
  */
 
@@ -12,9 +12,13 @@ const hlStudio = (function (hl) {
     console.log('HL Studio loaded!');
   }
 
+  // Give the user a flag to know if they are in studio mode
+  hl.context.studioMode = new URLSearchParams(window.location.search).get('hls') === '1';
+  hl.context.isCurated = new URLSearchParams(window.location.search).get('ic') === '1';
+
   const originalReferences = {
     ...hl,
-    randomSeed: xmur3(hl.tx.hash + hl.tx.tokenId),
+    randomSeed: hl.context.isCurated ? xmur3(hl.tx.hash) : xmur3(hl.tx.hash + hl.tx.tokenId),
   };
 
   function xmur3(str) {
@@ -82,9 +86,6 @@ const hlStudio = (function (hl) {
     });
   }
 
-  // Give the user a flag to know if they are in studio mode
-  hl.context.studioMode = new URLSearchParams(window.location.search).get('hls') === '1';
-
   hl.context = new Proxy(hl.context, {
     get(target, prop, receiver) {
       return target[prop];
@@ -135,7 +136,7 @@ const hlStudio = (function (hl) {
     return min + (max - min) * rand;
   };
 
-  postMessageOnTopWindow('HLSTUDIO_INIT');
+  postMessageOnTopWindow('HLSTUDIO_INIT', { version: '0.0.2' });
 
   window.addEventListener('message', (event) => {
     if (event.data.eventName === 'CAPTURE_PREVIEW') {
@@ -150,7 +151,9 @@ const hlStudio = (function (hl) {
 
       // // Reset the random seed based on new hash and token id
       const tx = event.data.data.tx;
-      originalReferences.randomSeed = xmur3(tx.hash + tx.tokenId);
+      originalReferences.randomSeed = originalReferences.hl.context.isCurated
+        ? xmur3(tx.hash)
+        : xmur3(tx.hash + tx.tokenId);
       const newHl = {
         ...hl,
         tx,

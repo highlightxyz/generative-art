@@ -129,6 +129,8 @@ The options include:
 - **Locked**: won’t change
 - **Random Between**: a random value between two values
 - **Sequential**: increase (or decrease if negative) by a certain amount each generation
+- **List**: Sequentially pick from a list of values
+- **Random List**: Randomly pick from a list of values
 
 With these options you can now program how certain values change over time. In the future there will be more customization options, such as randomly/sequentially picking from a list of provided values.
 Underneath the form there are generation options. Let's go through them.
@@ -214,6 +216,22 @@ function preload() {
 Note that you need to use the hl object passed to the function for this to work!
 
 In normal rendering the `hl` object is the one from `hl-gen.js` script, but when harvesting traits, Highlight Studio sends in a custom `hl` object with the correct randomness and parameters. This is a bit more work but a best practice in any case. You should calculate as much as you can as fast as you can, before any heavy (drawing or file loading) operations occur, and since they are all in that one nice function, debugging any issues becomes much easier.
+
+## Tab - Series metadata
+
+**Only works in Chrome since it uses its' filesystem API**
+
+> If you just want to use this tab without others, you can enter a **"/"** as the project URL.
+
+If you're just creating a series project this tool is perfect for you! It helps you generate a proper **metadata.json** file and performs validations to help you catch any errors (like duplicate files, unused files etc.) and fix them.
+
+To start have your directory ready, that includes the **images** folder and optionally a **animations** folder. HL Studio will parse this directory and give you autocomplete for the files it finds. If you also already have a **metadata.json** file, Studio will find it, parse it, and also suggest autocomplete for traits.
+
+Sometimes you have a lot of artworks, and creating them by hand in an online editor might not be the best approach. You might, for example, take the build tool route, and have the file names of images contain the name, description and traits for that image, then using a script, parse the file names and generate the **metadata.json** file. That's perfectly fine!
+
+Just let HL Studio find the file, load it and check if it finds any validation errors. If not, you're good to go! But just to be extra sure you can also export the **metadata.json** file with Studio, so that the `metadataId`'s are properly indexed.
+
+Once you're happy with the metadata file, just follow the instructions [here](https://highlight.xyz/tools/collections/create/type/Series), zip the folder and upload it, and you're done!
 
 ## Escape hatches
 
