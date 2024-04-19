@@ -281,12 +281,12 @@ The ID of the blockchain for this transaction.
 
 | Blockchain | Mainnet chainId | Testnet chainId |
 | ---------- | --------------- | --------------- |
-| Ethereum   | 1               | 5               |
-| Base       | 8453            | 84531           |
-| Arbitrum   | 42161           | 421613          |
-| Optimism   | 10              | 420             |
-| Polygon    | 137             | 80001           |
-| Zora       | 7777777         | 999             |
+| Ethereum   | 1               | 11155111        |
+| Base       | 8453            | 84532           |
+| Arbitrum   | 42161           |                 |
+| Optimism   | 10              |                 |
+| Polygon    | 137             |                 |
+| Zora       | 7777777         |                 |
 
 ---
 
