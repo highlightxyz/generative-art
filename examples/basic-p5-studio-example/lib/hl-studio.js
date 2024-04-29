@@ -151,7 +151,7 @@ const hlStudio = (function (hl) {
 
       // // Reset the random seed based on new hash and token id
       const tx = event.data.data.tx;
-      originalReferences.randomSeed = originalReferences.hl.context.isCurated
+      originalReferences.randomSeed = originalReferences.context.isCurated
         ? xmur3(tx.hash)
         : xmur3(tx.hash + tx.tokenId);
       const newHl = {
