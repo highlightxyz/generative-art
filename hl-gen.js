@@ -132,13 +132,14 @@ const hl = (function () {
       traits: {},
       name: "",
       description: "",
+        previewUrl: "",
       capturePreview: function () {
         window.dispatchEvent(new Event("CAPTURE_PREVIEW"));
         setTimeout(() => this.capturePreview(), 500);
       },
-      capturePreviewUrl: function () {
-          window.dispatchEvent(new Event("CAPTURE_PREVIEW_URL"));
-          setTimeout(() => this.capturePreviewUrl(), 500);
+      capturePreviewUrl: function (url) {
+        this.previewUrl = url;
+        this.capturePreview();
       },
       setTraits: function (traits) {
         this.traits = traits;
