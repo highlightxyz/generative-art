@@ -1,6 +1,6 @@
 /**
  * Highlight Generative Art Script : V0
- * @version: 0.1.2
+ * @version: 0.1.3
  * @description The script exposes certain values and methods that
  * can be used within code based generative art.
  */
@@ -132,9 +132,14 @@ const hl = (function () {
       traits: {},
       name: "",
       description: "",
+        previewUrl: "",
       capturePreview: function () {
         window.dispatchEvent(new Event("CAPTURE_PREVIEW"));
         setTimeout(() => this.capturePreview(), 500);
+      },
+      capturePreviewUrl: function (url) {
+        this.previewUrl = url;
+        this.capturePreview();
       },
       setTraits: function (traits) {
         this.traits = traits;
@@ -161,7 +166,7 @@ const hl = (function () {
       scriptInfo: () => {
         return {
           name: "Highlight Generative Art Script",
-          version: "0.1.2",
+          version: "0.1.3",
           framework: "js",
         };
       },
